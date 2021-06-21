@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Application.Models
 {
-    public class OrgUnitModel : OrgModel
+    public class OrgUnitModel : BaseModel
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int OrgModelId { get; set; }
+        public OrgModel Org { get; set; }
+        public HierarchyId HierarchyId { get; set; }
     }
 }

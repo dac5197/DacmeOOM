@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DacmeOOM.Application.Enums;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace DacmeOOM.Application.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public HierarchyId HierarchyId { get; set; }
+        public OrgType OrgType { get; set; }
+        public int Level { get; set; }
     }
 }
