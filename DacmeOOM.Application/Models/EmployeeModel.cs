@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Application.Models
 {
-    class EmployeeModel : BaseModel
+    public class EmployeeModel : BaseModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -14,6 +14,6 @@ namespace DacmeOOM.Application.Models
         public int RoleId { get; set; }
         public EmployeeRoleModel Role { get; set; }
         public DateTime HireDate { get; set; }
-        public DateTime TermDate { get; set; }
+        public DateTime? TermDate { get; set; }
     }
 }

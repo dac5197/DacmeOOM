@@ -11,7 +11,7 @@ namespace DacmeOOM.Application.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int EmployeeId { get; set; }
-        public EmployeeRoleModel Employee { get; set; }
+        public EmployeeModel Employee { get; set; }
         public int OrgUnitId { get; set; }
         public OrgUnitModel OrgUnit { get; set; }
         public int OrgModelId { get; set; }
