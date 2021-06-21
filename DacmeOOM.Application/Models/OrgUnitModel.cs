@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +12,7 @@ namespace DacmeOOM.Application.Models
         public string Name { get; set; }
         public int OrgModelId { get; set; }
         public OrgModel Org { get; set; }
-        public HierarchyId HierarchyId { get; set; }
+        public string Path { get; set; }
+        public List<EmployeeRoleModel> Roles { get; set; }
     }
 }
