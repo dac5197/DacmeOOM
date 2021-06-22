@@ -12,44 +12,42 @@ namespace DacmeOOM.Web.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrgLevelController : ControllerBase
+    public class OrgTypeController : ControllerBase
     {
         private readonly IHandlerFactory _handlerFactory;
 
-        public OrgLevelController(IHandlerFactory handlerFactory)
+        public OrgTypeController(IHandlerFactory handlerFactory)
         {
             _handlerFactory = handlerFactory;
         }
 
-        // GET: api/<OrgLevelController>
+        // GET: api/<OrgTypeController>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var output = await _handlerFactory.OrgLevel.GetAsync();
+            var output = await _handlerFactory.OrgType.GetAsync();
             return Ok(output);
         }
 
-        // GET: api/<OrgLevelController>/5
+        // GET: api/<OrgTypeController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var output = await _handlerFactory.OrgLevel.GetAsync(id);
+            var output = await _handlerFactory.OrgType.GetAsync(id);
             return Ok(output);
         }
 
-        //POST: api/<OrgLevelController>
+        // POST: api/<OrgTypeController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] OrgLevelRequestModel value)
+        public async Task<IActionResult> POST([FromBody] OrgTypeRequestModel value)
         {
-            OrgLevelModel orgLevel = new()
+            OrgTypeModel orgType = new()
             {
-                Name = value.Name,
-                Level = value.Level,
-                OrgTypeId = value.OrgTypeId
+                Name = value.Name
             };
 
-            var output = await _handlerFactory.OrgLevel.AddAsync(orgLevel);
-            
+            var output = await _handlerFactory.OrgType.AddAsync(orgType);
+
             return Ok(output);
         }
     }
