@@ -23,7 +23,7 @@ namespace DacmeOOM.Web.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var output = await _handlerFactory.OrgLevels.GetAsync();
+            var output = await _handlerFactory.OrgLevel.GetAsync();
             return Ok(output);
         }
 
@@ -31,7 +31,7 @@ namespace DacmeOOM.Web.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(int id)
         {
-            var output = await _handlerFactory.OrgLevels.GetAsync(id);
+            var output = await _handlerFactory.OrgLevel.GetAsync(id);
             return Ok(output);
         }
 
