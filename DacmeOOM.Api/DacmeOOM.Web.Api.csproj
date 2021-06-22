@@ -17,8 +17,4 @@
     <ProjectReference Include="..\DacmeOOM.Infrastructure\DacmeOOM.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\V1\ResponseModels\" />
-  </ItemGroup>
-
 </Project>

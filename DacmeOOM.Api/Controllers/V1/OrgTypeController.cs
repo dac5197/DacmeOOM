@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DacmeOOM.Web.Api.Controllers
+namespace DacmeOOM.Web.Api.Controllers.V1
 {
     [Route("api/[controller]")]
     [ApiController]

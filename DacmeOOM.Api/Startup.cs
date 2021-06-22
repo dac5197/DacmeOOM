@@ -1,6 +1,7 @@
 using DacmeOOM.Application.Interfaces;
 using DacmeOOM.Infrastructure.DataAccess;
 using DacmeOOM.Infrastructure.Factories;
+using DacmeOOM.Web.Api.Maps;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,6 +41,8 @@ namespace DacmeOOM.Api
             });
 
             services.AddScoped<IHandlerFactory, HandlerFactory>();
+
+            services.AddTransient<IMapper, Mapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
