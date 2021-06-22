@@ -3,25 +3,46 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DacmeOOM.Infrastructure.DataAccess.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigration2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Orgs",
+                name: "OrgTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    OrgType = table.Column<int>(type: "int", nullable: false),
-                    Level = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Updated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orgs", x => x.Id);
+                    table.PrimaryKey("PK_OrgTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrgLevels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    OrgTypeId = table.Column<int>(type: "int", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Updated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrgLevels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrgLevels_OrgTypes_OrgTypeId",
+                        column: x => x.OrgTypeId,
+                        principalTable: "OrgTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -32,6 +53,7 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     OrgModelId = table.Column<int>(type: "int", nullable: false),
+                    OrgId = table.Column<int>(type: "int", nullable: true),
                     Path = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Updated = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -40,9 +62,9 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_OrgUnits", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrgUnits_Orgs_OrgModelId",
-                        column: x => x.OrgModelId,
-                        principalTable: "Orgs",
+                        name: "FK_OrgUnits_OrgLevels_OrgId",
+                        column: x => x.OrgId,
+                        principalTable: "OrgLevels",
                         principalColumn: "Id");
                 });
 
@@ -56,6 +78,7 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     OrgUnitId = table.Column<int>(type: "int", nullable: false),
                     OrgModelId = table.Column<int>(type: "int", nullable: false),
+                    OrgId = table.Column<int>(type: "int", nullable: true),
                     Path = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Updated = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -64,9 +87,9 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_EmployeeRoles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmployeeRoles_Orgs_OrgModelId",
-                        column: x => x.OrgModelId,
-                        principalTable: "Orgs",
+                        name: "FK_EmployeeRoles_OrgLevels_OrgId",
+                        column: x => x.OrgId,
+                        principalTable: "OrgLevels",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_EmployeeRoles_OrgUnits_OrgUnitId",
@@ -100,9 +123,9 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeRoles_OrgModelId",
+                name: "IX_EmployeeRoles_OrgId",
                 table: "EmployeeRoles",
-                column: "OrgModelId");
+                column: "OrgId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeRoles_OrgUnitId",
@@ -116,9 +139,14 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrgUnits_OrgModelId",
+                name: "IX_OrgLevels_OrgTypeId",
+                table: "OrgLevels",
+                column: "OrgTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrgUnits_OrgId",
                 table: "OrgUnits",
-                column: "OrgModelId");
+                column: "OrgId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -133,7 +161,10 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                 name: "OrgUnits");
 
             migrationBuilder.DropTable(
-                name: "Orgs");
+                name: "OrgLevels");
+
+            migrationBuilder.DropTable(
+                name: "OrgTypes");
         }
     }
 }

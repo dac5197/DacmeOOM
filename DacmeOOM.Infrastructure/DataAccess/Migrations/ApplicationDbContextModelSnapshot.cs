@@ -77,6 +77,9 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("OrgId")
+                        .HasColumnType("int");
+
                     b.Property<int>("OrgModelId")
                         .HasColumnType("int");
 
@@ -93,14 +96,14 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrgModelId");
+                    b.HasIndex("OrgId");
 
                     b.HasIndex("OrgUnitId");
 
                     b.ToTable("EmployeeRoles");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.OrgModel", b =>
+            modelBuilder.Entity("DacmeOOM.Application.Models.OrgLevelModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,7 +121,7 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("OrgType")
+                    b.Property<int>("OrgTypeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Updated")
@@ -126,7 +129,32 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orgs");
+                    b.HasIndex("OrgTypeId");
+
+                    b.ToTable("OrgLevels");
+                });
+
+            modelBuilder.Entity("DacmeOOM.Application.Models.OrgTypeModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrgTypes");
                 });
 
             modelBuilder.Entity("DacmeOOM.Application.Models.OrgUnitModel", b =>
@@ -144,6 +172,9 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("OrgId")
+                        .HasColumnType("int");
+
                     b.Property<int>("OrgModelId")
                         .HasColumnType("int");
 
@@ -157,7 +188,7 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrgModelId");
+                    b.HasIndex("OrgId");
 
                     b.ToTable("OrgUnits");
                 });
@@ -175,11 +206,10 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
 
             modelBuilder.Entity("DacmeOOM.Application.Models.EmployeeRoleModel", b =>
                 {
-                    b.HasOne("DacmeOOM.Application.Models.OrgModel", "Org")
+                    b.HasOne("DacmeOOM.Application.Models.OrgLevelModel", "Org")
                         .WithMany("EmployeeRoles")
-                        .HasForeignKey("OrgModelId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("OrgId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("DacmeOOM.Application.Models.OrgUnitModel", "OrgUnit")
                         .WithMany("Roles")
@@ -192,13 +222,23 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     b.Navigation("OrgUnit");
                 });
 
+            modelBuilder.Entity("DacmeOOM.Application.Models.OrgLevelModel", b =>
+                {
+                    b.HasOne("DacmeOOM.Application.Models.OrgTypeModel", "OrgType")
+                        .WithMany("OrgLevels")
+                        .HasForeignKey("OrgTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OrgType");
+                });
+
             modelBuilder.Entity("DacmeOOM.Application.Models.OrgUnitModel", b =>
                 {
-                    b.HasOne("DacmeOOM.Application.Models.OrgModel", "Org")
+                    b.HasOne("DacmeOOM.Application.Models.OrgLevelModel", "Org")
                         .WithMany("OrgUnits")
-                        .HasForeignKey("OrgModelId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("OrgId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Org");
                 });
@@ -208,11 +248,16 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.OrgModel", b =>
+            modelBuilder.Entity("DacmeOOM.Application.Models.OrgLevelModel", b =>
                 {
                     b.Navigation("EmployeeRoles");
 
                     b.Navigation("OrgUnits");
+                });
+
+            modelBuilder.Entity("DacmeOOM.Application.Models.OrgTypeModel", b =>
+                {
+                    b.Navigation("OrgLevels");
                 });
 
             modelBuilder.Entity("DacmeOOM.Application.Models.OrgUnitModel", b =>

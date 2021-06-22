@@ -19,7 +19,8 @@ namespace DacmeOOM.Infrastructure.DataAccess
         // Entities
         public DbSet<EmployeeModel> Employees { get; set; }
         public DbSet<EmployeeRoleModel> EmployeeRoles { get; set; }
-        public DbSet<OrgLevelModel> Orgs { get; set; }
+        public DbSet<OrgLevelModel> OrgLevels { get; set; }
+        public DbSet<OrgTypeModel> OrgTypes { get; set; }
         public DbSet<OrgUnitModel> OrgUnits { get; set; }
 
 
@@ -73,8 +74,14 @@ namespace DacmeOOM.Infrastructure.DataAccess
                 .OnDelete(DeleteBehavior.NoAction);
 
 
-            // OrgModel
+            // OrgLevelModel
             modelBuilder.Entity<OrgLevelModel>()
+                .Property(x => x.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            // OrgTypeModel
+            modelBuilder.Entity<OrgTypeModel>()
                 .Property(x => x.Name)
                 .HasMaxLength(50)
                 .IsRequired();
