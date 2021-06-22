@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Application.Models
 {
-    public class OrgModel : BaseModel
+    public class OrgLevelModel : BaseModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

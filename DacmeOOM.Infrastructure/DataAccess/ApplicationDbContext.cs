@@ -19,7 +19,7 @@ namespace DacmeOOM.Infrastructure.DataAccess
         // Entities
         public DbSet<EmployeeModel> Employees { get; set; }
         public DbSet<EmployeeRoleModel> EmployeeRoles { get; set; }
-        public DbSet<OrgModel> Orgs { get; set; }
+        public DbSet<OrgLevelModel> Orgs { get; set; }
         public DbSet<OrgUnitModel> OrgUnits { get; set; }
 
 
@@ -74,7 +74,7 @@ namespace DacmeOOM.Infrastructure.DataAccess
 
 
             // OrgModel
-            modelBuilder.Entity<OrgModel>()
+            modelBuilder.Entity<OrgLevelModel>()
                 .Property(x => x.Name)
                 .HasMaxLength(50)
                 .IsRequired();

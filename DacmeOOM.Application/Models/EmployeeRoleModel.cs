@@ -15,7 +15,7 @@ namespace DacmeOOM.Application.Models
         public int OrgUnitId { get; set; }
         public OrgUnitModel OrgUnit { get; set; }
         public int OrgModelId { get; set; }
-        public OrgModel Org { get; set; }
+        public OrgLevelModel Org { get; set; }
         public string Path { get; set; }
     }
 }

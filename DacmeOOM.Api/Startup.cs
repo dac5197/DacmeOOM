@@ -1,4 +1,6 @@
+using DacmeOOM.Application.Interfaces;
 using DacmeOOM.Infrastructure.DataAccess;
+using DacmeOOM.Infrastructure.Factories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,6 +38,8 @@ namespace DacmeOOM.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DacmeOOM.Api", Version = "v1" });
             });
+
+            services.AddScoped<IHandlerFactory, HandlerFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

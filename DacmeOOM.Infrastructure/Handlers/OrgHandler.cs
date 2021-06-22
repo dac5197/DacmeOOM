@@ -1,4 +1,5 @@
-﻿using DacmeOOM.Application.Models;
+﻿using DacmeOOM.Application.Interfaces;
+using DacmeOOM.Application.Models;
 using DacmeOOM.Infrastructure.DataAccess;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Infrastructure.Handlers
 {
-    public class OrgModelHandler : BaseHandler<OrgModel, ApplicationDbContext>
+    public class OrgHandler : BaseHandler<OrgLevelModel, ApplicationDbContext>, IOrgHandler
     {
         private readonly ApplicationDbContext _context;
 
-        public OrgModelHandler(ApplicationDbContext context) : base(context)
+        public OrgHandler(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
