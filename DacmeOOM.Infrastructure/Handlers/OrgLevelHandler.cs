@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Infrastructure.Handlers
 {
-    public class OrgHandler : BaseHandler<OrgLevelModel, ApplicationDbContext>, IOrgHandler
+    public class OrgLevelHandler : BaseHandler<OrgLevelModel, ApplicationDbContext>, IOrgLevelHandler
     {
         private readonly ApplicationDbContext _context;
 
-        public OrgHandler(ApplicationDbContext context) : base(context)
+        public OrgLevelHandler(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }

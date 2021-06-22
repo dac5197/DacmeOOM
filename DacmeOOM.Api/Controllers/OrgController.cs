@@ -23,7 +23,7 @@ namespace DacmeOOM.Web.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var output = await _handlerFactory.OrgHandler.GetAsync();
+            var output = await _handlerFactory.OrgLevels.GetAsync();
             return Ok(output);
         }
     }

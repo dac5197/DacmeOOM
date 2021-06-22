@@ -2,6 +2,6 @@
 {
     public interface IHandlerFactory
     {
-        IOrgHandler OrgHandler { get; }
+        IOrgLevelHandler OrgLevels { get; }
     }
 }

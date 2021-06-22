@@ -11,7 +11,7 @@ namespace DacmeOOM.Infrastructure.Factories
 {
     public class HandlerFactory : IHandlerFactory
     {
-        private IOrgHandler _orgHandler;
+        private IOrgLevelHandler _orgLevelHandler;
         private readonly ApplicationDbContext _context;
 
         public HandlerFactory(ApplicationDbContext context)
@@ -19,16 +19,16 @@ namespace DacmeOOM.Infrastructure.Factories
             _context = context;
         }
 
-        public IOrgHandler OrgHandler
+        public IOrgLevelHandler OrgLevels
         {
             get
             {
-                if (_orgHandler is null)
+                if (_orgLevelHandler is null)
                 {
-                    _orgHandler = new OrgHandler(_context);
+                    _orgLevelHandler = new OrgLevelHandler(_context);
                 }
 
-                return _orgHandler;
+                return _orgLevelHandler;
             }
         }
     }
