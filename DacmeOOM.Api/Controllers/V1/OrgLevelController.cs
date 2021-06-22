@@ -1,6 +1,8 @@
-﻿using DacmeOOM.Application.Interfaces;
+﻿using AutoMapper;
+using DacmeOOM.Application.Interfaces;
 using DacmeOOM.Application.Models;
 using DacmeOOM.Web.Api.Contracts.V1.RequestModels;
+using DacmeOOM.Web.Api.Contracts.V1.ResponseModels;
 using DacmeOOM.Web.Api.Maps;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +30,8 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var output = await _handlerFactory.OrgLevel.GetAsync();
+            var entities = await _handlerFactory.OrgLevel.GetAsync();
+            var output = _mapper.Map<List<OrgLevelResponseModel>>(entities);
             return Ok(output);
         }
 
@@ -37,7 +40,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         public async Task<IActionResult> Get(int id)
         {
             var entity = await _handlerFactory.OrgLevel.GetAsync(id);
-            var output = _mapper.EntityModelToResponseModel(entity);
+            var output = _mapper.Map<OrgLevelResponseModel>(entity);
             return Ok(output);
         }
 
@@ -45,16 +48,8 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] OrgLevelRequestModel value)
         {
-            //OrgLevelModel orgLevel = new()
-            //{
-            //    Name = value.Name,
-            //    Level = value.Level,
-            //    OrgTypeId = value.OrgTypeId
-            //};
-
-            var orgLevel = _mapper.RequestModelToEntityModel(value);
-
-            var output = await _handlerFactory.OrgLevel.AddAsync(orgLevel);
+            var entity = await _handlerFactory.OrgLevel.AddAsync(_mapper.Map<OrgLevelModel>(value));
+            var output = _mapper.Map<OrgLevelResponseModel>(entity);
 
             return Ok(output);
         }

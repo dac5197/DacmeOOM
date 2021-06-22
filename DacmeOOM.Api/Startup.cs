@@ -40,9 +40,9 @@ namespace DacmeOOM.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DacmeOOM.Api", Version = "v1" });
             });
 
-            services.AddScoped<IHandlerFactory, HandlerFactory>();
+            services.AddAutoMapper(typeof(Startup));
 
-            services.AddTransient<IMapper, Mapper>();
+            services.AddScoped<IHandlerFactory, HandlerFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

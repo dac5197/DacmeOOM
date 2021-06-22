@@ -1,6 +1,8 @@
-﻿using DacmeOOM.Application.Interfaces;
+﻿using AutoMapper;
+using DacmeOOM.Application.Interfaces;
 using DacmeOOM.Application.Models;
 using DacmeOOM.Web.Api.Contracts.V1.RequestModels;
+using DacmeOOM.Web.Api.Contracts.V1.ResponseModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,17 +17,20 @@ namespace DacmeOOM.Web.Api.Controllers.V1
     public class OrgTypeController : ControllerBase
     {
         private readonly IHandlerFactory _handlerFactory;
+        private readonly IMapper _mapper;
 
-        public OrgTypeController(IHandlerFactory handlerFactory)
+        public OrgTypeController(IHandlerFactory handlerFactory, IMapper mapper)
         {
             _handlerFactory = handlerFactory;
+            _mapper = mapper;
         }
 
         // GET: api/<OrgTypeController>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var output = await _handlerFactory.OrgType.GetAsync();
+            var entities = await _handlerFactory.OrgType.GetAsync();
+            var output = _mapper.Map<List<OrgTypeResponseModel>>(entities);
             return Ok(output);
         }
 
@@ -33,7 +38,8 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var output = await _handlerFactory.OrgType.GetAsync(id);
+            var entity = await _handlerFactory.OrgType.GetAsync(id);
+            var output = _mapper.Map<OrgTypeResponseModel>(entity);
             return Ok(output);
         }
 
@@ -41,12 +47,8 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> POST([FromBody] OrgTypeRequestModel value)
         {
-            OrgTypeModel orgType = new()
-            {
-                Name = value.Name
-            };
-
-            var output = await _handlerFactory.OrgType.AddAsync(orgType);
+            var entity = await _handlerFactory.OrgType.AddAsync(_mapper.Map<OrgTypeModel>(value));
+            var output = _mapper.Map<OrgTypeResponseModel>(entity);
 
             return Ok(output);
         }
