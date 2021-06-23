@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,8 +42,17 @@ namespace DacmeOOM.Api
             });
 
             services.AddAutoMapper(typeof(Startup));
+            services.AddApiVersioning(options => {
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.ApiVersionReader = ApiVersionReader.Combine(
+                        new MediaTypeApiVersionReader("version"),
+                        new HeaderApiVersionReader("X-Version")
+                    );
+                options.ReportApiVersions = true;
+            });
 
-            services.AddScoped<IServiceFactory, HandlerFactory>();
+            services.AddScoped<IServiceFactory, ServiceFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
