@@ -1,7 +1,10 @@
 using DacmeOOM.Application.Interfaces;
+using DacmeOOM.Application.Validators;
 using DacmeOOM.Infrastructure.DataAccess;
 using DacmeOOM.Infrastructure.Factories;
+using DacmeOOM.Web.Api.Filters;
 using DacmeOOM.Web.Api.Maps;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +42,17 @@ namespace DacmeOOM.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DacmeOOM.Api", Version = "v1" });
+            });
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<ValidationFilter>();
+            })
+            .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<OrgLevelValidator>());
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
             });
 
             services.AddAutoMapper(typeof(Startup));
