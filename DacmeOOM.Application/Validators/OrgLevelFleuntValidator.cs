@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Application.Validators
 {
-    public class OrgLevelValidator : AbstractValidator<OrgLevelModel>
+    public class OrgLevelFleuntValidator : AbstractValidator<OrgLevelModel>
     {
-        public OrgLevelValidator()
+        public OrgLevelFleuntValidator()
         {
             RuleFor(x => x.Name)
                 .NotEmpty() //.WithMessage("")

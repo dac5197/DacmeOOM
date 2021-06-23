@@ -44,16 +44,16 @@ namespace DacmeOOM.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DacmeOOM.Api", Version = "v1" });
             });
 
-            services.AddMvc(options =>
-            {
-                options.Filters.Add<ValidationFilter>();
-            })
-            .AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<OrgLevelValidator>());
+            //services.AddMvc(options =>
+            //{
+            //    options.Filters.Add<ValidationFilter>();
+            //})
+            //.AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<OrgLevelValidator>());
 
-            services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.SuppressModelStateInvalidFilter = true;
-            });
+            //services.Configure<ApiBehaviorOptions>(options =>
+            //{
+            //    options.SuppressModelStateInvalidFilter = true;
+            //});
 
             services.AddAutoMapper(typeof(Startup));
             services.AddApiVersioning(options => {
