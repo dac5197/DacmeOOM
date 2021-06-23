@@ -41,7 +41,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         {
             var entity = await _serviceFactory.OrgType.GetAsync(id);
             var output = _mapper.Map<OrgTypeResponseModel>(entity);
-            return Ok(output);
+            return output is null ? NotFound() : Ok(output);
         }
 
         // POST: api/<OrgTypeController>

@@ -42,7 +42,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         {
             var entity = await _serviceFactory.OrgLevel.GetAsync(id);
             var output = _mapper.Map<OrgLevelResponseModel>(entity);
-            return Ok(output);
+            return output is null ? NotFound() : Ok(output);
         }
 
         //POST: api/<OrgLevelController>
