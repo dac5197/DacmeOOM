@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DacmeOOM.Infrastructure.Handlers
+namespace DacmeOOM.Infrastructure.Services
 {
-    class OrgTypeHandler : BaseHandler<OrgTypeModel, ApplicationDbContext>, IOrgTypeHandler
+    class OrgTypeService : BaseService<OrgTypeModel, ApplicationDbContext>, IOrgTypeService
     {
         private readonly ApplicationDbContext _context;
 
-        public OrgTypeHandler(ApplicationDbContext context) : base(context)
+        public OrgTypeService(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }

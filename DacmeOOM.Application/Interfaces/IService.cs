@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Application.Interfaces
 {
-    public interface IHandler<TEntity> where TEntity : class
+    public interface IService<TEntity> where TEntity : class
     {
         Task<List<TEntity>> GetAsync();
         Task<TEntity> GetAsync(int id);

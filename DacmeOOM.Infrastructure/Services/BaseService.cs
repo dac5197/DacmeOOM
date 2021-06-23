@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DacmeOOM.Infrastructure.Handlers
+namespace DacmeOOM.Infrastructure.Services
 {
-    public abstract class BaseHandler<TEntity, TContext> : IHandler<TEntity>
+    public abstract class BaseService<TEntity, TContext> : IService<TEntity>
         where TEntity : class
         where TContext : DbContext
     {
         private readonly TContext _context;
 
-        public BaseHandler(TContext context)
+        public BaseService(TContext context)
         {
             _context = context;
         }

@@ -17,12 +17,12 @@ namespace DacmeOOM.Web.Api.Controllers.V1
     [ApiController]
     public class OrgLevelController : ControllerBase
     {
-        private readonly IHandlerFactory _handlerFactory;
+        private readonly IServiceFactory _serviceFactory;
         private readonly IMapper _mapper;
 
-        public OrgLevelController(IHandlerFactory handlerFactory, IMapper mapper)
+        public OrgLevelController(IServiceFactory serviceFactory, IMapper mapper)
         {
-            _handlerFactory = handlerFactory;
+            _serviceFactory = serviceFactory;
             _mapper = mapper;
         }
 
@@ -30,7 +30,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var entities = await _handlerFactory.OrgLevel.GetAsync();
+            var entities = await _serviceFactory.OrgLevel.GetAsync();
             var output = _mapper.Map<List<OrgLevelResponseModel>>(entities);
             return Ok(output);
         }
@@ -39,7 +39,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var entity = await _handlerFactory.OrgLevel.GetAsync(id);
+            var entity = await _serviceFactory.OrgLevel.GetAsync(id);
             var output = _mapper.Map<OrgLevelResponseModel>(entity);
             return Ok(output);
         }
@@ -48,7 +48,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] OrgLevelRequestModel value)
         {
-            var entity = await _handlerFactory.OrgLevel.AddAsync(_mapper.Map<OrgLevelModel>(value));
+            var entity = await _serviceFactory.OrgLevel.AddAsync(_mapper.Map<OrgLevelModel>(value));
             var output = _mapper.Map<OrgLevelResponseModel>(entity);
 
             return Ok(output);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Application.Interfaces
 {
-    public interface IOrgTypeHandler : IHandler<OrgTypeModel>
+    public interface IOrgLevelService : IService<OrgLevelModel>
     {
     }
 }

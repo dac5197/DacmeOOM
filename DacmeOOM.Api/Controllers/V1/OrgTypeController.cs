@@ -16,12 +16,12 @@ namespace DacmeOOM.Web.Api.Controllers.V1
     [ApiController]
     public class OrgTypeController : ControllerBase
     {
-        private readonly IHandlerFactory _handlerFactory;
+        private readonly IServiceFactory _serviceFactory;
         private readonly IMapper _mapper;
 
-        public OrgTypeController(IHandlerFactory handlerFactory, IMapper mapper)
+        public OrgTypeController(IServiceFactory serviceFactory, IMapper mapper)
         {
-            _handlerFactory = handlerFactory;
+            _serviceFactory = serviceFactory;
             _mapper = mapper;
         }
 
@@ -29,7 +29,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var entities = await _handlerFactory.OrgType.GetAsync();
+            var entities = await _serviceFactory.OrgType.GetAsync();
             var output = _mapper.Map<List<OrgTypeResponseModel>>(entities);
             return Ok(output);
         }
@@ -38,7 +38,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var entity = await _handlerFactory.OrgType.GetAsync(id);
+            var entity = await _serviceFactory.OrgType.GetAsync(id);
             var output = _mapper.Map<OrgTypeResponseModel>(entity);
             return Ok(output);
         }
@@ -47,7 +47,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> POST([FromBody] OrgTypeRequestModel value)
         {
-            var entity = await _handlerFactory.OrgType.AddAsync(_mapper.Map<OrgTypeModel>(value));
+            var entity = await _serviceFactory.OrgType.AddAsync(_mapper.Map<OrgTypeModel>(value));
             var output = _mapper.Map<OrgTypeResponseModel>(entity);
 
             return Ok(output);
