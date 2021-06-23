@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DacmeOOM.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DacmeOOM.Validation", "DacmeOOM.Validation\DacmeOOM.Validation.csproj", "{65CF7F41-3952-45B5-9150-EB789E8EEE03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DacmeOOM.Operation", "DacmeOOM.Operation\DacmeOOM.Operation.csproj", "{FDE3B911-D197-401F-A37A-0C46EEBABACD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{65CF7F41-3952-45B5-9150-EB789E8EEE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65CF7F41-3952-45B5-9150-EB789E8EEE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65CF7F41-3952-45B5-9150-EB789E8EEE03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDE3B911-D197-401F-A37A-0C46EEBABACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDE3B911-D197-401F-A37A-0C46EEBABACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDE3B911-D197-401F-A37A-0C46EEBABACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDE3B911-D197-401F-A37A-0C46EEBABACD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{9584B3B3-6128-4F78-941A-4A0B444C93BF} = {B7D14D60-0CEB-4E9D-A03B-324CAE82279A}
 		{3CBCCCF4-0428-4CEF-91A7-3678430C0588} = {B7D14D60-0CEB-4E9D-A03B-324CAE82279A}
 		{65CF7F41-3952-45B5-9150-EB789E8EEE03} = {B7D14D60-0CEB-4E9D-A03B-324CAE82279A}
+		{FDE3B911-D197-401F-A37A-0C46EEBABACD} = {B7D14D60-0CEB-4E9D-A03B-324CAE82279A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F894A50-04F6-40FF-9122-9BA616C0FED3}
