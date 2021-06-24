@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DacmeOOM.Infrastructure.DataAccess
+namespace DacmeOOM.Infrastructure.EFCore.DataAccess
 {
     public class ApplicationDbContext : DbContext
     {

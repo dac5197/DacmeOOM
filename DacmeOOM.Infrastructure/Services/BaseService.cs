@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DacmeOOM.Infrastructure.Services
+namespace DacmeOOM.Infrastructure.EFCore.Services
 {
     public abstract class BaseService<TEntity, TContext> : IService<TEntity>
         where TEntity : class

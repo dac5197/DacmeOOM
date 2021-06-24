@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DacmeOOM.Infrastructure.DataAccess.Migrations
+namespace DacmeOOM.Infrastructure.EFCore.DataAccess.Migrations
 {
     public partial class InitialMigration2 : Migration
     {

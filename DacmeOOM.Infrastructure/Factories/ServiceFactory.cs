@@ -1,13 +1,13 @@
 ﻿using DacmeOOM.Core.Domain.Interfaces;
-using DacmeOOM.Infrastructure.DataAccess;
-using DacmeOOM.Infrastructure.Services;
+using DacmeOOM.Infrastructure.EFCore.DataAccess;
+using DacmeOOM.Infrastructure.EFCore.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DacmeOOM.Infrastructure.Factories
+namespace DacmeOOM.Infrastructure.EFCore.Factories
 {
     public class ServiceFactory : IServiceFactory
     {

@@ -1,7 +1,7 @@
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Core.Domain.Validators;
-using DacmeOOM.Infrastructure.DataAccess;
-using DacmeOOM.Infrastructure.Factories;
+using DacmeOOM.Infrastructure.EFCore.DataAccess;
+using DacmeOOM.Infrastructure.EFCore.Factories;
 using DacmeOOM.Web.Api.Filters;
 using DacmeOOM.Web.Api.Maps;
 using FluentValidation.AspNetCore;
