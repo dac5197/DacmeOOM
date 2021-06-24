@@ -51,7 +51,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
 
         // POST: api/<OrgTypeController>
         [HttpPost]
-        public async Task<IActionResult> POST([FromBody] OrgTypeRequestModel value)
+        public async Task<IActionResult> POST([FromBody] OrgTypePostRequestModel value)
         {
             var command = new AddOrgTypeCommand.Command(value.Name);
             var result = await _mediator.Send(command);
@@ -68,5 +68,28 @@ namespace DacmeOOM.Web.Api.Controllers.V1
 
             return Ok(output);
         }
+
+        // PUT: api/<OrgTypeController>/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, OrgTypePutRequestModel value)
+        {
+            var command = new UpdateOrgTypeCommand.Command(id, _mapper.Map<OrgTypeModel>(value));
+            var result = await _mediator.Send(command);
+
+            if (result.IsValid is false)
+            {
+                ErrorListReponseModel errorResponse = new();
+                errorResponse.SetBadRequest(result.ErrorList.EntityName, _mapper.Map<List<ErrorResponseModel>>(result.ErrorList.Errors));
+
+                return BadRequest(errorResponse);
+            }
+
+            var output = _mapper.Map<OrgTypeResponseModel>(result.Entity);
+
+            return Ok(output);
+        }
+
+
+        // DELETE: api/<OrgTypeController>/5
     }
 }

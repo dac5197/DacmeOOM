@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Core.Application.Commands.OrgTypeCommands
 {
-    public class AddOrgTypeCommand
+    public class UpdateOrgTypeCommand
     {
-        public record Command(string Name) : IRequest<CommandResponseModel<OrgTypeModel>>;
+        public record Command(int Id, OrgTypeModel Entity) : IRequest<CommandResponseModel<OrgTypeModel>>;
 
         public class Handler : IRequestHandler<Command, CommandResponseModel<OrgTypeModel>>
         {
@@ -29,13 +29,11 @@ namespace DacmeOOM.Core.Application.Commands.OrgTypeCommands
 
             public async Task<CommandResponseModel<OrgTypeModel>> Handle(Command request, CancellationToken cancellationToken)
             {
-                OrgTypeModel entity = new() { Name = request.Name };
-
-                var errors = await _validatorFactory.OrgType.ValidateAsync(entity);
+                var errors = await _validatorFactory.OrgType.ValidateAsync(request.Entity);
 
                 CommandResponseModel<OrgTypeModel> output = new()
                 {
-                    Entity = entity
+                    Entity = request.Entity
                 };
 
                 if (errors.Errors.Any())
@@ -45,10 +43,12 @@ namespace DacmeOOM.Core.Application.Commands.OrgTypeCommands
                     return output;
                 }
 
-                await _serviceFactory.OrgType.AddAsync(entity);
+                await _serviceFactory.OrgType.UpdateAsync(request.Entity);
 
                 return output;
+
             }
+
         }
     }
 }

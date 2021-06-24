@@ -13,7 +13,8 @@ namespace DacmeOOM.Web.Api.Maps
         public RequestModelToDomainModelMap()
         {
             CreateMap<OrgLevelRequestModel, OrgLevelModel>();
-            CreateMap<OrgTypeRequestModel, OrgTypeModel>();
+            CreateMap<OrgTypePostRequestModel, OrgTypeModel>();
+            CreateMap<OrgTypePutRequestModel, OrgTypeModel>();
         }
     }
 }

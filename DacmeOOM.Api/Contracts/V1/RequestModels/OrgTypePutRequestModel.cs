@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Web.Api.Contracts.V1.RequestModels
 {
-    public class OrgTypeRequestModel
+    public class OrgTypePutRequestModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
