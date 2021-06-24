@@ -13,9 +13,9 @@ namespace DacmeOOM.Core.Application.Commands.OrgTypeCommands
 {
     public class AddOrgTypeCommand
     {
-        public record Command(string Name) : IRequest<HandlerModel<OrgTypeModel>>;
+        public record Command(string Name) : IRequest<CommandResponseModel<OrgTypeModel>>;
 
-        public class Handler : IRequestHandler<Command, HandlerModel<OrgTypeModel>>
+        public class Handler : IRequestHandler<Command, CommandResponseModel<OrgTypeModel>>
         {
             private readonly IServiceFactory _serviceFactory;
 
@@ -24,9 +24,20 @@ namespace DacmeOOM.Core.Application.Commands.OrgTypeCommands
                 _serviceFactory = serviceFactory;
             }
 
-            public Task<HandlerModel<OrgTypeModel>> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<CommandResponseModel<OrgTypeModel>> Handle(Command request, CancellationToken cancellationToken)
             {
-                throw new NotImplementedException();
+                OrgTypeModel entity = new() { Name = request.Name };
+
+                // TODO: Add validation
+
+                await _serviceFactory.OrgType.AddAsync(entity);
+
+                CommandResponseModel<OrgTypeModel> output = new()
+                {
+                    Entity = entity
+                };
+
+                return output;
             }
         }
     }

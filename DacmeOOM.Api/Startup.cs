@@ -1,9 +1,11 @@
+using DacmeOOM.Core.Application;
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Infrastructure.EFCore.DataAccess;
 using DacmeOOM.Infrastructure.EFCore.Factories;
 using DacmeOOM.Web.Api.Filters;
 using DacmeOOM.Web.Api.Maps;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -55,6 +57,7 @@ namespace DacmeOOM.Api
             //});
 
             services.AddAutoMapper(typeof(Startup));
+            services.AddMediatR(typeof(MediatorAssemplyPlaceholder).Assembly);
             services.AddApiVersioning(options => {
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.DefaultApiVersion = new ApiVersion(1, 0);
@@ -65,7 +68,7 @@ namespace DacmeOOM.Api
                 options.ReportApiVersions = true;
             });
 
-            services.AddScoped<IServiceFactory, ServiceFactory>();
+            services.AddScoped<IServiceFactory, Infrastructure.EFCore.Factories.ServiceFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

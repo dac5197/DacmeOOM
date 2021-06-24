@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using DacmeOOM.Core.Application.Commands.OrgTypeCommands;
+using DacmeOOM.Core.Application.Models;
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Core.Domain.Models;
 using DacmeOOM.Web.Api.Contracts.V1.RequestModels;
 using DacmeOOM.Web.Api.Contracts.V1.ResponseModels;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,11 +22,13 @@ namespace DacmeOOM.Web.Api.Controllers.V1
     {
         private readonly IServiceFactory _serviceFactory;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public OrgTypeController(IServiceFactory serviceFactory, IMapper mapper)
+        public OrgTypeController(IServiceFactory serviceFactory, IMapper mapper, IMediator mediator)
         {
             _serviceFactory = serviceFactory;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         // GET: api/<OrgTypeController>
@@ -48,8 +53,20 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> POST([FromBody] OrgTypeRequestModel value)
         {
-            var entity = await _serviceFactory.OrgType.AddAsync(_mapper.Map<OrgTypeModel>(value));
-            var output = _mapper.Map<OrgTypeResponseModel>(entity);
+            //var entity = await _serviceFactory.OrgType.AddAsync(_mapper.Map<OrgTypeModel>(value));
+            //var input = new HandlerModel<OrgTypeModel>()
+            //{
+            //    Entity = entity
+            //};
+            var command = new AddOrgTypeCommand.Command(value.Name);
+            var result = await _mediator.Send(command);
+
+            if (!result.IsValid)
+            {
+                return BadRequest(result.ErrorList);
+            }
+
+            var output = _mapper.Map<OrgTypeResponseModel>(result.Entity);
 
             return Ok(output);
         }

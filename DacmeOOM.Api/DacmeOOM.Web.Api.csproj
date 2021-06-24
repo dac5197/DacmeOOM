@@ -9,6 +9,8 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="FluentValidation" Version="10.2.3" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.2.3" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7">
@@ -20,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DacmeOOM.Infrastructure\DacmeOOM.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\DacmeOOM.Operation\DacmeOOM.Core.Application.csproj" />
   </ItemGroup>
 
 </Project>
