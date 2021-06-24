@@ -1,5 +1,6 @@
 ﻿using DacmeOOM.Core.Application.Interfaces;
 using DacmeOOM.Core.Application.Models;
+using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Core.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,21 @@ namespace DacmeOOM.Core.Application.Validators
 {
     public class OrgTypeValidator : BaseValidator, IOrgTypeValidator
     {
+        private readonly IServiceFactory _serviceFactory;
+
+        public OrgTypeValidator(IServiceFactory serviceFactory)
+        {
+            _serviceFactory = serviceFactory;
+        }
+
         public async Task<ErrorListModel> ValidateAsync(OrgTypeModel entity)
         {
             InitializeErrors(entity.GetType().Name.Replace("Model", ""));
+
+            if (entity.Id != 0)
+            {
+                await Validate_OrgTypeEntity_ExistsInDb(entity);
+            }
 
             Validate_Name_IsNotEmpty(entity);
             Validate_Name_IsLessThan51Char(entity);
@@ -40,6 +53,17 @@ namespace DacmeOOM.Core.Application.Validators
             if (propertyToTest.Length > 50)
             {
                 AddToErrors(propertyName, $"'{ propertyName }' legnth ({ propertyToTest.Length }) exceeds maximum length (50).");
+            }
+        }
+
+        private async Task Validate_OrgTypeEntity_ExistsInDb(OrgTypeModel entity)
+        {
+            var propertyName = nameof(entity.Id);
+            var entityInDb = await _serviceFactory.OrgType.GetAsync(entity.Id);
+
+            if (entityInDb is null)
+            {
+                AddToErrors(propertyName, $"'{ propertyName }' not found.");
             }
         }
     }

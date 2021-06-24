@@ -1,5 +1,6 @@
 ﻿using DacmeOOM.Core.Application.Interfaces;
 using DacmeOOM.Core.Application.Validators;
+using DacmeOOM.Core.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,14 @@ namespace DacmeOOM.Core.Application.Factories
 {
     public class ValidatorFactory : IValidatorFactory
     {
+        private readonly IServiceFactory _serviceFactory;
+
         private IOrgTypeValidator _orgTypeValidator;
+
+        public ValidatorFactory(IServiceFactory serviceFactory)
+        {
+            _serviceFactory = serviceFactory;
+        }
 
         public IOrgTypeValidator OrgType
         {
@@ -18,7 +26,7 @@ namespace DacmeOOM.Core.Application.Factories
             {
                 if (_orgTypeValidator is null)
                 {
-                    _orgTypeValidator = new OrgTypeValidator();
+                    _orgTypeValidator = new OrgTypeValidator(_serviceFactory);
                 }
 
                 return _orgTypeValidator;

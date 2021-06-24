@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DacmeOOM.Core.Application.Commands.OrgTypeCommands;
 using DacmeOOM.Core.Application.Models;
+using DacmeOOM.Core.Application.Queries.OrgTypeQueries;
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Core.Domain.Models;
 using DacmeOOM.Web.Api.Contracts.V1.RequestModels;
@@ -35,8 +36,9 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var entities = await _serviceFactory.OrgType.GetAsync();
-            var output = _mapper.Map<List<OrgTypeResponseModel>>(entities);
+            var query = new GetAllOrgTypeListQuery.Query();
+            var result = await _mediator.Send(query);
+            var output = _mapper.Map<List<OrgTypeResponseModel>>(result);
             return Ok(output);
         }
 
@@ -89,7 +91,14 @@ namespace DacmeOOM.Web.Api.Controllers.V1
             return Ok(output);
         }
 
-
         // DELETE: api/<OrgTypeController>/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var command = new DeleteOrgTypeCommand.Command(id);
+            var result = await _mediator.Send(command);
+
+            return result ? Ok() : NotFound();
+        }
     }
 }
