@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Core.Application.Factories
 {
-    class ValidatorFactory : IValidatorFactory
+    public class ValidatorFactory : IValidatorFactory
     {
         private IOrgTypeValidator _orgTypeValidator;
 

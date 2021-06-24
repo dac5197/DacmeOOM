@@ -1,4 +1,6 @@
 using DacmeOOM.Core.Application;
+using DacmeOOM.Core.Application.Factories;
+using DacmeOOM.Core.Application.Interfaces;
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Infrastructure.EFCore.DataAccess;
 using DacmeOOM.Infrastructure.EFCore.Factories;
@@ -69,6 +71,7 @@ namespace DacmeOOM.Api
             });
 
             services.AddScoped<IServiceFactory, Infrastructure.EFCore.Factories.ServiceFactory>();
+            services.AddScoped<IValidatorFactory, ValidatorFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

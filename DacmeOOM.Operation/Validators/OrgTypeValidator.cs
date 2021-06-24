@@ -13,7 +13,7 @@ namespace DacmeOOM.Core.Application.Validators
     {
         public async Task<ErrorListModel> ValidateAsync(OrgTypeModel entity)
         {
-            ClearErrors();
+            InitializeErrors();
 
             Validate_Name_IsNotEmpty(entity);
 

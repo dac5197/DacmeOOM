@@ -1,4 +1,5 @@
-﻿using DacmeOOM.Core.Application.Models;
+﻿using DacmeOOM.Core.Application.Interfaces;
+using DacmeOOM.Core.Application.Models;
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Core.Domain.Models;
 using MediatR;
@@ -18,10 +19,12 @@ namespace DacmeOOM.Core.Application.Commands.OrgTypeCommands
         public class Handler : IRequestHandler<Command, CommandResponseModel<OrgTypeModel>>
         {
             private readonly IServiceFactory _serviceFactory;
+            private readonly IValidatorFactory _validatorFactory;
 
-            public Handler(IServiceFactory serviceFactory)
+            public Handler(IServiceFactory serviceFactory, IValidatorFactory validatorFactory)
             {
                 _serviceFactory = serviceFactory;
+                _validatorFactory = validatorFactory;
             }
 
             public async Task<CommandResponseModel<OrgTypeModel>> Handle(Command request, CancellationToken cancellationToken)
@@ -30,12 +33,32 @@ namespace DacmeOOM.Core.Application.Commands.OrgTypeCommands
 
                 // TODO: Add validation
 
-                await _serviceFactory.OrgType.AddAsync(entity);
+                var errors = await _validatorFactory.OrgType.ValidateAsync(entity);
 
                 CommandResponseModel<OrgTypeModel> output = new()
                 {
                     Entity = entity
                 };
+
+                if (errors.Errors.Any())
+                {
+                    //CommandResponseModel<OrgTypeModel> output = new()
+                    //{
+                    //    Entity = entity,
+                    //    ErrorList = errors
+                    //};
+
+                    output.ErrorList = errors;
+
+                    return output;
+                }
+
+                await _serviceFactory.OrgType.AddAsync(entity);
+
+                //CommandResponseModel<OrgTypeModel> output = new()
+                //{
+                //    Entity = entity
+                //};
 
                 return output;
             }
