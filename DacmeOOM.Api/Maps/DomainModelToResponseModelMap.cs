@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Web.Api.Maps
 {
-    public class EntityModelToResponseModelMap : Profile
+    public class DomainModelToResponseModelMap : Profile
     {
-        public EntityModelToResponseModelMap()
+        public DomainModelToResponseModelMap()
         {
             CreateMap<OrgLevelModel, OrgLevelResponseModel>();
             CreateMap<OrgTypeModel, OrgTypeResponseModel>();

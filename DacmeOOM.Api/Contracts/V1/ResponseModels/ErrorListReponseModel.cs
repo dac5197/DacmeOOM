@@ -8,6 +8,8 @@ namespace DacmeOOM.Web.Api.Contracts.V1.ResponseModels
 {
     public class ErrorListReponseModel
     {
+        public string Title { get; set; }
+        public int Status { get; set; }
         public List<ErrorResponseModel> Errors { get; set; }
     }
 }

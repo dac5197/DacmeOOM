@@ -53,17 +53,19 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> POST([FromBody] OrgTypeRequestModel value)
         {
-            //var entity = await _serviceFactory.OrgType.AddAsync(_mapper.Map<OrgTypeModel>(value));
-            //var input = new HandlerModel<OrgTypeModel>()
-            //{
-            //    Entity = entity
-            //};
             var command = new AddOrgTypeCommand.Command(value.Name);
             var result = await _mediator.Send(command);
 
-            if (!result.IsValid)
+            if (result.IsValid is false)
             {
-                return BadRequest(result.ErrorList);
+                ErrorListReponseModel errorResponse = new()
+                {
+                    Title = "Bad Request",
+                    Status = BadRequest().StatusCode,
+                    Errors = _mapper.Map<List<ErrorResponseModel>>(result.ErrorList.Errors)
+                };
+
+                return BadRequest(errorResponse);
             }
 
             var output = _mapper.Map<OrgTypeResponseModel>(result.Entity);

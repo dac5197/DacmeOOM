@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Web.Api.Maps
 {
-    public class RequestModelToEntityModelMap : Profile
+    public class RequestModelToDomainModelMap : Profile
     {
-        public RequestModelToEntityModelMap()
+        public RequestModelToDomainModelMap()
         {
             CreateMap<OrgLevelRequestModel, OrgLevelModel>();
             CreateMap<OrgTypeRequestModel, OrgTypeModel>();
