@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Commands\OrgLevelCommands\" />
-    <Folder Include="Queries\OrgLevelQueries\" />
   </ItemGroup>
 
   <ItemGroup>

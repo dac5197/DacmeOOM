@@ -21,13 +21,11 @@ namespace DacmeOOM.Web.Api.Controllers.V1
     [ApiVersion("1.0")]
     public class OrgTypeController : ControllerBase
     {
-        private readonly IServiceFactory _serviceFactory;
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public OrgTypeController(IServiceFactory serviceFactory, IMapper mapper, IMediator mediator)
+        public OrgTypeController(IMapper mapper, IMediator mediator)
         {
-            _serviceFactory = serviceFactory;
             _mapper = mapper;
             _mediator = mediator;
         }

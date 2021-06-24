@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using DacmeOOM.Core.Application.Queries.OrgLevelQueries;
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Core.Domain.Models;
 using DacmeOOM.Web.Api.Contracts.V1.RequestModels;
 using DacmeOOM.Web.Api.Contracts.V1.ResponseModels;
 using DacmeOOM.Web.Api.Maps;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,19 +22,22 @@ namespace DacmeOOM.Web.Api.Controllers.V1
     {
         private readonly IServiceFactory _serviceFactory;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public OrgLevelController(IServiceFactory serviceFactory, IMapper mapper)
+        public OrgLevelController(IServiceFactory serviceFactory, IMapper mapper, IMediator mediator)
         {
             _serviceFactory = serviceFactory;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         // GET: api/<OrgLevelController>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var entities = await _serviceFactory.OrgLevel.GetAsync();
-            var output = _mapper.Map<List<OrgLevelResponseModel>>(entities);
+            var query = new GetAllOrgLevelListQuery.Query();
+            var result = await _mediator.Send(query);
+            var output = _mapper.Map<List<OrgLevelResponseModel>>(result);
             return Ok(output);
         }
 
@@ -40,8 +45,9 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var entity = await _serviceFactory.OrgLevel.GetAsync(id);
-            var output = _mapper.Map<OrgLevelResponseModel>(entity);
+            var query = new GetOrgLevelByIdQuery.Query(id);
+            var result = await _mediator.Send(query);
+            var output = _mapper.Map<OrgLevelResponseModel>(result);
             return output is null ? NotFound() : Ok(output);
         }
 
