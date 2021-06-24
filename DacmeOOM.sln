@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DacmeOOM.Core.Domain", "Dac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DacmeOOM.Infrastructure", "DacmeOOM.Infrastructure\DacmeOOM.Infrastructure.csproj", "{3CBCCCF4-0428-4CEF-91A7-3678430C0588}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DacmeOOM.Operation", "DacmeOOM.Operation\DacmeOOM.Operation.csproj", "{FDE3B911-D197-401F-A37A-0C46EEBABACD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DacmeOOM.Core.Application", "DacmeOOM.Operation\DacmeOOM.Core.Application.csproj", "{FDE3B911-D197-401F-A37A-0C46EEBABACD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
