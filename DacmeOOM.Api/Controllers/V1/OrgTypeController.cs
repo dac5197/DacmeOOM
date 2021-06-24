@@ -46,8 +46,9 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var entity = await _serviceFactory.OrgType.GetAsync(id);
-            var output = _mapper.Map<OrgTypeResponseModel>(entity);
+            var query = new GetOrgTypeByIdQuery.Query(id);
+            var result = await _mediator.Send(query);
+            var output = _mapper.Map<OrgTypeResponseModel>(result);
             return output is null ? NotFound() : Ok(output);
         }
 
