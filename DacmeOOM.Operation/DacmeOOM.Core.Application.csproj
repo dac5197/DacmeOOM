@@ -6,10 +6,8 @@
 
   <ItemGroup>
     <Folder Include="Commands\OrgLevelCommands\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Queries\OrgTypeQueries\" />
     <Folder Include="Queries\OrgLevelQueries\" />
-    <Folder Include="Validators\" />
   </ItemGroup>
 
   <ItemGroup>
