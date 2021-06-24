@@ -58,13 +58,9 @@ namespace DacmeOOM.Web.Api.Controllers.V1
 
             if (result.IsValid is false)
             {
-                ErrorListReponseModel errorResponse = new()
-                {
-                    Title = "Bad Request",
-                    Status = BadRequest().StatusCode,
-                    Errors = _mapper.Map<List<ErrorResponseModel>>(result.ErrorList.Errors)
-                };
-
+                ErrorListReponseModel errorResponse = new();
+                errorResponse.SetBadRequest(_mapper.Map<List<ErrorResponseModel>>(result.ErrorList.Errors));
+                
                 return BadRequest(errorResponse);
             }
 
