@@ -59,7 +59,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
             if (result.IsValid is false)
             {
                 ErrorListReponseModel errorResponse = new();
-                errorResponse.SetBadRequest(_mapper.Map<List<ErrorResponseModel>>(result.ErrorList.Errors));
+                errorResponse.SetBadRequest(result.ErrorList.EntityName, _mapper.Map<List<ErrorResponseModel>>(result.ErrorList.Errors));
                 
                 return BadRequest(errorResponse);
             }

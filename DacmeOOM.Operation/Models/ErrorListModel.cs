@@ -8,6 +8,7 @@ namespace DacmeOOM.Core.Application.Models
 {
     public class ErrorListModel
     {
+        public string EntityName { get; set; }
         public List<ErrorModel> Errors { get; set; }
     }
 }

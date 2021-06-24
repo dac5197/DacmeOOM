@@ -28,10 +28,11 @@ namespace DacmeOOM.Core.Application.Validators
             ErrorsList.Errors.Add(error);
         }
 
-        public void InitializeErrors()
+        public void InitializeErrors(string entityName)
         {
             ErrorsList = new();
             ErrorsList.Errors = new();
+            ErrorsList.EntityName = entityName;
         }
     }
 }

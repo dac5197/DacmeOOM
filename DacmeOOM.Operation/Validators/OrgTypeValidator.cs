@@ -13,9 +13,10 @@ namespace DacmeOOM.Core.Application.Validators
     {
         public async Task<ErrorListModel> ValidateAsync(OrgTypeModel entity)
         {
-            InitializeErrors();
+            InitializeErrors(entity.GetType().Name.Replace("Model", ""));
 
             Validate_Name_IsNotEmpty(entity);
+            Validate_Name_IsLessThan51Char(entity);
 
             return await Task.FromResult(ErrorsList);
         }
@@ -27,7 +28,18 @@ namespace DacmeOOM.Core.Application.Validators
 
             if (String.IsNullOrEmpty(propertyToTest))
             {
-                AddToErrors(propertyName, $"{ propertyName } cannot be empty or null.");
+                AddToErrors(propertyName, $"'{ propertyName }' cannot be empty or null.");
+            }
+        }
+
+        private void Validate_Name_IsLessThan51Char(OrgTypeModel entity)
+        {
+            var propertyName = nameof(entity.Name);
+            var propertyToTest = entity.Name;
+
+            if (propertyToTest.Length > 50)
+            {
+                AddToErrors(propertyName, $"'{ propertyName }' legnth ({ propertyToTest.Length }) exceeds maximum length (50).");
             }
         }
     }

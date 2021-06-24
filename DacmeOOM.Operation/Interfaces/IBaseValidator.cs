@@ -7,6 +7,6 @@ namespace DacmeOOM.Core.Application.Interfaces
         ErrorListModel ErrorsList { get; set; }
 
         void AddToErrors(string propertyName, string message);
-        void InitializeErrors();
+        void InitializeErrors(string entityName);
     }
 }
