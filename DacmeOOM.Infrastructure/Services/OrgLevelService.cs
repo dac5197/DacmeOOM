@@ -1,5 +1,5 @@
-﻿using DacmeOOM.Application.Interfaces;
-using DacmeOOM.Application.Models;
+﻿using DacmeOOM.Core.Domain.Interfaces;
+using DacmeOOM.Core.Domain.Models;
 using DacmeOOM.Infrastructure.DataAccess;
 using System;
 using System.Collections.Generic;

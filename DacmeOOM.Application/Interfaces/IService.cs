@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DacmeOOM.Application.Interfaces
+namespace DacmeOOM.Core.Domain.Interfaces
 {
     public interface IService<TEntity> where TEntity : class
     {

@@ -1,5 +1,5 @@
-using DacmeOOM.Application.Interfaces;
-using DacmeOOM.Application.Validators;
+using DacmeOOM.Core.Domain.Interfaces;
+using DacmeOOM.Core.Domain.Validators;
 using DacmeOOM.Infrastructure.DataAccess;
 using DacmeOOM.Infrastructure.Factories;
 using DacmeOOM.Web.Api.Filters;

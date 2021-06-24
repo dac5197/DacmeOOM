@@ -1,4 +1,4 @@
-﻿using DacmeOOM.Application.Interfaces;
+﻿using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Infrastructure.DataAccess;
 using DacmeOOM.Infrastructure.Services;
 using System;

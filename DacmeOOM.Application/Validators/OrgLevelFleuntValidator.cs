@@ -1,4 +1,4 @@
-﻿using DacmeOOM.Application.Models;
+﻿using DacmeOOM.Core.Domain.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DacmeOOM.Application.Validators
+namespace DacmeOOM.Core.Domain.Validators
 {
     public class OrgLevelFleuntValidator : AbstractValidator<OrgLevelModel>
     {

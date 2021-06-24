@@ -1,4 +1,4 @@
-﻿using DacmeOOM.Application.Interfaces;
+﻿using DacmeOOM.Core.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

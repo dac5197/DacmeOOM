@@ -1,4 +1,4 @@
-﻿namespace DacmeOOM.Application.Interfaces
+﻿namespace DacmeOOM.Core.Domain.Interfaces
 {
     public interface IServiceFactory
     {

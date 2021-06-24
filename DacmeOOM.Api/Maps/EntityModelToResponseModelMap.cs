@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DacmeOOM.Application.Models;
+using DacmeOOM.Core.Domain.Models;
 using DacmeOOM.Web.Api.Contracts.V1.ResponseModels;
 using System;
 using System.Collections.Generic;

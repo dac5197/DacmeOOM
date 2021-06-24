@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DacmeOOM.Application.Interfaces;
-using DacmeOOM.Application.Models;
+using DacmeOOM.Core.Domain.Interfaces;
+using DacmeOOM.Core.Domain.Models;
 using DacmeOOM.Web.Api.Contracts.V1.RequestModels;
 using DacmeOOM.Web.Api.Contracts.V1.ResponseModels;
 using Microsoft.AspNetCore.Http;

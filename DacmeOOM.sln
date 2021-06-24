@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B7D14D60-0CE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D1309A15-E097-4327-9A72-DEB044CA77C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DacmeOOM.Application", "DacmeOOM.Application\DacmeOOM.Application.csproj", "{9584B3B3-6128-4F78-941A-4A0B444C93BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DacmeOOM.Core.Domain", "DacmeOOM.Application\DacmeOOM.Core.Domain.csproj", "{9584B3B3-6128-4F78-941A-4A0B444C93BF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DacmeOOM.Infrastructure", "DacmeOOM.Infrastructure\DacmeOOM.Infrastructure.csproj", "{3CBCCCF4-0428-4CEF-91A7-3678430C0588}"
 EndProject

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DacmeOOM.Application.Models
+namespace DacmeOOM.Core.Domain.Models
 {
     public class WorkflowModel : BaseModel
     {

@@ -19,7 +19,7 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.EmployeeModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.EmployeeModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.EmployeeRoleModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.EmployeeRoleModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -103,7 +103,7 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     b.ToTable("EmployeeRoles");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.OrgLevelModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.OrgLevelModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,7 +134,7 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     b.ToTable("OrgLevels");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.OrgTypeModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.OrgTypeModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -157,7 +157,7 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     b.ToTable("OrgTypes");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.OrgUnitModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.OrgUnitModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -193,25 +193,25 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     b.ToTable("OrgUnits");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.EmployeeModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.EmployeeModel", b =>
                 {
-                    b.HasOne("DacmeOOM.Application.Models.EmployeeRoleModel", "Role")
+                    b.HasOne("DacmeOOM.Core.Domain.Models.EmployeeRoleModel", "Role")
                         .WithOne("Employee")
-                        .HasForeignKey("DacmeOOM.Application.Models.EmployeeModel", "RoleId")
+                        .HasForeignKey("DacmeOOM.Core.Domain.Models.EmployeeModel", "RoleId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.EmployeeRoleModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.EmployeeRoleModel", b =>
                 {
-                    b.HasOne("DacmeOOM.Application.Models.OrgLevelModel", "Org")
+                    b.HasOne("DacmeOOM.Core.Domain.Models.OrgLevelModel", "Org")
                         .WithMany("EmployeeRoles")
                         .HasForeignKey("OrgId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("DacmeOOM.Application.Models.OrgUnitModel", "OrgUnit")
+                    b.HasOne("DacmeOOM.Core.Domain.Models.OrgUnitModel", "OrgUnit")
                         .WithMany("Roles")
                         .HasForeignKey("OrgUnitId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -222,9 +222,9 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     b.Navigation("OrgUnit");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.OrgLevelModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.OrgLevelModel", b =>
                 {
-                    b.HasOne("DacmeOOM.Application.Models.OrgTypeModel", "OrgType")
+                    b.HasOne("DacmeOOM.Core.Domain.Models.OrgTypeModel", "OrgType")
                         .WithMany("OrgLevels")
                         .HasForeignKey("OrgTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -233,9 +233,9 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     b.Navigation("OrgType");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.OrgUnitModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.OrgUnitModel", b =>
                 {
-                    b.HasOne("DacmeOOM.Application.Models.OrgLevelModel", "Org")
+                    b.HasOne("DacmeOOM.Core.Domain.Models.OrgLevelModel", "Org")
                         .WithMany("OrgUnits")
                         .HasForeignKey("OrgId")
                         .OnDelete(DeleteBehavior.NoAction);
@@ -243,24 +243,24 @@ namespace DacmeOOM.Infrastructure.DataAccess.Migrations
                     b.Navigation("Org");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.EmployeeRoleModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.EmployeeRoleModel", b =>
                 {
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.OrgLevelModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.OrgLevelModel", b =>
                 {
                     b.Navigation("EmployeeRoles");
 
                     b.Navigation("OrgUnits");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.OrgTypeModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.OrgTypeModel", b =>
                 {
                     b.Navigation("OrgLevels");
                 });
 
-            modelBuilder.Entity("DacmeOOM.Application.Models.OrgUnitModel", b =>
+            modelBuilder.Entity("DacmeOOM.Core.Domain.Models.OrgUnitModel", b =>
                 {
                     b.Navigation("Roles");
                 });

@@ -1,4 +1,4 @@
-﻿using DacmeOOM.Application.Models;
+﻿using DacmeOOM.Core.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
