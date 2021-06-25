@@ -91,5 +91,15 @@ namespace DacmeOOM.Web.Api.Controllers.V1
 
             return Ok(output);
         }
+
+        // DELETE: api/<OrgLevelController>/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var command = new DeleteOrgLevelCommand.Command(id);
+            var result = await _mediator.Send(command);
+
+            return result ? Ok() : NotFound();
+        }
     }
 }
