@@ -8,10 +8,11 @@ namespace DacmeOOM.Core.Domain.Interfaces
 {
     public interface IService<TEntity> where TEntity : class
     {
+        Task<TEntity> AddAsync(TEntity entity);
+        Task<bool> DeleteAsync(int id);
         Task<List<TEntity>> GetAsync();
         Task<TEntity> GetAsync(int id);
-        Task<TEntity> AddAsync(TEntity entity);
+        Task<List<TEntity>> GetUntrackedAsync();
         Task<TEntity> UpdateAsync(TEntity entity);
-        Task<bool> DeleteAsync(int id);
     }
 }

@@ -12,7 +12,10 @@ namespace DacmeOOM.Web.Api.Maps
     {
         public DomainModelToResponseModelMap()
         {
+            // OrgLevel
             CreateMap<OrgLevelModel, OrgLevelResponseModel>();
+
+            // OrgType
             CreateMap<OrgTypeModel, OrgTypeResponseModel>();
         }
     }

@@ -52,11 +52,31 @@ namespace DacmeOOM.Web.Api.Controllers.V1
             return output is null ? NotFound() : Ok(output);
         }
 
-        //POST: api/<OrgLevelController>
+        // POST: api/<OrgLevelController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] OrgLevelRequestModel value)
+        public async Task<IActionResult> Post([FromBody] OrgLevelPostRequestModel value)
         {
             var command = new AddOrgLevelCommand.Command(value.Name, value.Level, value.OrgTypeId);
+            var result = await _mediator.Send(command);
+
+            if (result.IsValid is false)
+            {
+                ErrorListReponseModel errorResponse = new();
+                errorResponse.SetBadRequest(result.ErrorList.EntityName, _mapper.Map<List<ErrorResponseModel>>(result.ErrorList.Errors));
+
+                return BadRequest(errorResponse);
+            }
+
+            var output = _mapper.Map<OrgLevelResponseModel>(result.Entity);
+
+            return Ok(output);
+        }
+
+        // PUT: api/<OrgLevelController>/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, OrgLevelPutRequestModel value)
+        {
+            var command = new UpdateOrgLevelCommand.Command(id, _mapper.Map<OrgLevelModel>(value));
             var result = await _mediator.Send(command);
 
             if (result.IsValid is false)

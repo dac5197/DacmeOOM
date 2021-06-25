@@ -53,6 +53,12 @@ namespace DacmeOOM.Infrastructure.EFCore.Services
             return entity;
         }
 
+        public async Task<List<TEntity>> GetUntrackedAsync()
+        {
+            var entities = await _context.Set<TEntity>().AsNoTracking().ToListAsync();
+            return entities;
+        }
+
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);

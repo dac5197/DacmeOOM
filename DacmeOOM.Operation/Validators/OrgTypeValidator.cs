@@ -59,7 +59,8 @@ namespace DacmeOOM.Core.Application.Validators
         private async Task Validate_OrgTypeEntity_ExistsInDb(OrgTypeModel entity)
         {
             var propertyName = nameof(entity.Id);
-            var entityInDb = await _serviceFactory.OrgType.GetAsync(entity.Id);
+            var entitiesInDb = await _serviceFactory.OrgType.GetUntrackedAsync();
+            var entityInDb = entitiesInDb.Where(x => x.Id == entity.Id).FirstOrDefault();
 
             if (entityInDb is null)
             {
