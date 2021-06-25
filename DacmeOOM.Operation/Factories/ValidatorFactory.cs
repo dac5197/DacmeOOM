@@ -13,11 +13,25 @@ namespace DacmeOOM.Core.Application.Factories
     {
         private readonly IServiceFactory _serviceFactory;
 
+        private IOrgLevelValidator _orgLevelValidator;
         private IOrgTypeValidator _orgTypeValidator;
 
         public ValidatorFactory(IServiceFactory serviceFactory)
         {
             _serviceFactory = serviceFactory;
+        }
+
+        public IOrgLevelValidator OrgLevel 
+        {
+            get
+            {
+                if (_orgLevelValidator is null)
+                {
+                    _orgLevelValidator = new OrgLevelValidator(_serviceFactory);
+                }
+
+                return _orgLevelValidator;
+            }
         }
 
         public IOrgTypeValidator OrgType

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DacmeOOM.Core.Application.Commands.OrgLevelCommands;
 using DacmeOOM.Core.Application.Queries.OrgLevelQueries;
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Core.Domain.Models;
@@ -55,8 +56,18 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] OrgLevelRequestModel value)
         {
-            var entity = await _serviceFactory.OrgLevel.AddAsync(_mapper.Map<OrgLevelModel>(value));
-            var output = _mapper.Map<OrgLevelResponseModel>(entity);
+            var command = new AddOrgLevelCommand.Command(value.Name, value.Level, value.OrgTypeId);
+            var result = await _mediator.Send(command);
+
+            if (result.IsValid is false)
+            {
+                ErrorListReponseModel errorResponse = new();
+                errorResponse.SetBadRequest(result.ErrorList.EntityName, _mapper.Map<List<ErrorResponseModel>>(result.ErrorList.Errors));
+
+                return BadRequest(errorResponse);
+            }
+
+            var output = _mapper.Map<OrgLevelResponseModel>(result.Entity);
 
             return Ok(output);
         }
