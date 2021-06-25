@@ -23,8 +23,16 @@ namespace DacmeOOM.Core.Application.Validators
         {
             InitializeErrors(entity.GetType().Name.Replace("Model", ""));
 
+            if (entity.Id != 0)
+            {
+                await Validate_OrgLevelEntity_ExistsInDb(entity);
+            }
+
             Validate_Name_IsNotEmpty(entity);
             Validate_Name_IsLessThan51Char(entity);
+            Validate_Level_IsPostive(entity);
+
+            await Validate_FkOrgTypeEntity_ExistsInDb(entity);
 
             return await Task.FromResult(ErrorsList);
         }
@@ -48,6 +56,39 @@ namespace DacmeOOM.Core.Application.Validators
             if (propertyToTest.Length > 50)
             {
                 AddToErrors(propertyName, $"'{ propertyName }' legnth ({ propertyToTest.Length }) exceeds maximum length (50).");
+            }
+        }
+
+        private void Validate_Level_IsPostive(OrgLevelModel entity)
+        {
+            var propertyName = nameof(entity.Level);
+            var propertyToTest = entity.Level;
+
+            if (propertyToTest < 0)
+            {
+                AddToErrors(propertyName, $"'{ propertyName }' value ({ propertyToTest }) must be a postive integer.");
+            }
+        }
+
+        private async Task Validate_FkOrgTypeEntity_ExistsInDb(OrgLevelModel entity)
+        {
+            var propertyName = nameof(entity.OrgTypeId);
+            var entityInDb = await _serviceFactory.OrgType.GetAsync(entity.OrgTypeId);
+
+            if (entityInDb is null)
+            {
+                AddToErrors(propertyName, $"'{ propertyName }' ({entity.OrgTypeId}) not found in database.");
+            }
+        }
+
+        private async Task Validate_OrgLevelEntity_ExistsInDb(OrgLevelModel entity)
+        {
+            var propertyName = nameof(entity.Id);
+            var entityInDb = await _serviceFactory.OrgLevel.GetAsync(entity.Id);
+
+            if (entityInDb is null)
+            {
+                AddToErrors(propertyName, $"'{ propertyName }' not found in database.");
             }
         }
     }

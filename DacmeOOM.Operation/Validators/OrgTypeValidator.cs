@@ -63,7 +63,7 @@ namespace DacmeOOM.Core.Application.Validators
 
             if (entityInDb is null)
             {
-                AddToErrors(propertyName, $"'{ propertyName }' not found.");
+                AddToErrors(propertyName, $"'{ propertyName }' not found in database.");
             }
         }
     }
