@@ -4,7 +4,7 @@ namespace DacmeOOM.Core.Application.Interfaces.IFactories
 {
     public interface IOrgLevelProcessorFactory
     {
-        IGetAllOrgLevelListProcessor GetAll { get; }
-        IGetOrgLevelByIdProcessor GetById { get; }
+        IOrgLevelGetAllProcessor GetAll { get; }
+        IOrgLevelGetByIdProcessor GetById { get; }
     }
 }

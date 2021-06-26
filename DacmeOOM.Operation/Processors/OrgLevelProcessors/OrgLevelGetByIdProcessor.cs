@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace DacmeOOM.Core.Application.Processors.OrgLevelProcessors
 {
-    public class GetOrgLevelByIdProcessor : IGetOrgLevelByIdProcessor
+    public class OrgLevelGetByIdProcessor : IOrgLevelGetByIdProcessor
     {
         private readonly IServiceFactory _serviceFactory;
 
-        public GetOrgLevelByIdProcessor(IServiceFactory serviceFactory)
+        public OrgLevelGetByIdProcessor(IServiceFactory serviceFactory)
         {
             _serviceFactory = serviceFactory;
         }
 
-        public async Task<OrgLevelModel> Process(int id)
+        public async Task<OrgLevelModel> ProcessAsync(int id)
         {
             var output = await _serviceFactory.OrgLevel.GetAsync(id);
             return output;

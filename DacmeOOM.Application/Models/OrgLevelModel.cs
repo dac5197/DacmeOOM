@@ -12,8 +12,8 @@ namespace DacmeOOM.Core.Domain.Models
         public string Name { get; set; }
         public int Level { get; set; }
         public int OrgTypeId { get; set; }
-        public OrgTypeModel OrgType { get; set; }
-        public List<EmployeeRoleModel> EmployeeRoles { get; set; }
-        public List<OrgUnitModel> OrgUnits { get; set; }
+        public virtual OrgTypeModel OrgType { get; set; }
+        public virtual List<EmployeeRoleModel> EmployeeRoles { get; set; }
+        public virtual List<OrgUnitModel> OrgUnits { get; set; }
     }
 }

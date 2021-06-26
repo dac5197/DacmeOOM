@@ -44,7 +44,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
             //var result = await _mediator.Send(query);
 
             //// Processor
-            var result = await _processorFactory.OrgLevel.GetAll.Process();
+            var result = await _processorFactory.OrgLevel.GetAll.ProcessAsync();
 
             var output = _mapper.Map<List<OrgLevelResponseModel>>(result);
             return Ok(output);
@@ -59,7 +59,7 @@ namespace DacmeOOM.Web.Api.Controllers.V1
             //var result = await _mediator.Send(query);
 
             // Processor
-            var result = await _processorFactory.OrgLevel.GetById.Process(id);
+            var result = await _processorFactory.OrgLevel.GetById.ProcessAsync(id);
 
             var output = _mapper.Map<OrgLevelResponseModel>(result);
             return output is null ? NotFound() : Ok(output);
