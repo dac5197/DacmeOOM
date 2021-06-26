@@ -29,12 +29,12 @@ namespace DacmeOOM.Core.Application.Validators
             }
 
             Validate_Name_IsNotEmpty(entity);
-            Validate_Name_IsLessThan51Char(entity);
+            Validate_Name_IsLessThan50Char(entity);
 
             return await Task.FromResult(ErrorsList);
         }
 
-        private void Validate_Name_IsNotEmpty(OrgTypeModel entity)
+        public void Validate_Name_IsNotEmpty(OrgTypeModel entity)
         {
             var propertyName = nameof(entity.Name);
             var propertyToTest = entity.Name;
@@ -45,7 +45,7 @@ namespace DacmeOOM.Core.Application.Validators
             }
         }
 
-        private void Validate_Name_IsLessThan51Char(OrgTypeModel entity)
+        public void Validate_Name_IsLessThan50Char(OrgTypeModel entity)
         {
             var propertyName = nameof(entity.Name);
             var propertyToTest = entity.Name;
@@ -56,7 +56,7 @@ namespace DacmeOOM.Core.Application.Validators
             }
         }
 
-        private async Task Validate_OrgTypeEntity_ExistsInDb(OrgTypeModel entity)
+        public async Task Validate_OrgTypeEntity_ExistsInDb(OrgTypeModel entity)
         {
             var propertyName = nameof(entity.Id);
             var entitiesInDb = await _serviceFactory.OrgType.GetUntrackedAsync();

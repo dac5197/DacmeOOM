@@ -363,10 +363,6 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var serviceFactoryStub = new Mock<IServiceFactory>();
             serviceFactoryStub.Setup(s => s.OrgLevel.GetUntrackedAsync()).ReturnsAsync(entities);
 
-            var propertyName = nameof(entityToTest.OrgTypeId);
-
-            var expextedError = CreateErrorModel(propertyName, $"'{ propertyName }' not found in database.");
-
             var sut = new OrgLevelValidator(serviceFactoryStub.Object);
             sut.InitializeErrors(GetEntityName(entityToTest));
 
@@ -381,6 +377,17 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             result.EntityName.Should().Be(GetEntityName(entityToTest));
 
             result.Errors.Should().BeEmpty();
+        }
+
+        private static ErrorModel CreateErrorModel(string propertyName, string propertyToTest)
+        {
+            ErrorModel error = new()
+            {
+                PropertyName = propertyName,
+                Message = propertyToTest,
+            };
+
+            return error;
         }
 
         private static string GetEntityName(OrgLevelModel entity)
@@ -412,17 +419,6 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             };
 
             return entity;
-        }
-
-        private ErrorModel CreateErrorModel(string propertyName, string propertyToTest)
-        {
-            ErrorModel error = new()
-            {
-                PropertyName = propertyName,
-                Message = propertyToTest,
-            };
-
-            return error;
         }
     }
 }
