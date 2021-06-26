@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DacmeOOM.Core.Application.Commands.OrgLevelCommands;
+using DacmeOOM.Core.Application.Interfaces.IFactories;
 using DacmeOOM.Core.Application.Queries.OrgLevelQueries;
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Core.Domain.Models;
@@ -21,12 +22,14 @@ namespace DacmeOOM.Web.Api.Controllers.V1
     [ApiVersion("1.0")]
     public class OrgLevelController : ControllerBase
     {
+        private readonly IProcessorFactory _processorFactory;
         private readonly IServiceFactory _serviceFactory;
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public OrgLevelController(IServiceFactory serviceFactory, IMapper mapper, IMediator mediator)
+        public OrgLevelController(IProcessorFactory processorFactory, IServiceFactory serviceFactory, IMapper mapper, IMediator mediator)
         {
+            _processorFactory = processorFactory;
             _serviceFactory = serviceFactory;
             _mapper = mapper;
             _mediator = mediator;
@@ -36,8 +39,13 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var query = new GetAllOrgLevelListQuery.Query();
-            var result = await _mediator.Send(query);
+            //// Mediator
+            //var query = new GetAllOrgLevelListQuery.Query();
+            //var result = await _mediator.Send(query);
+
+            //// Processor
+            var result = await _processorFactory.OrgLevel.GetAll.Process();
+
             var output = _mapper.Map<List<OrgLevelResponseModel>>(result);
             return Ok(output);
         }
@@ -46,8 +54,13 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var query = new GetOrgLevelByIdQuery.Query(id);
-            var result = await _mediator.Send(query);
+            //// Mediator
+            //var query = new GetOrgLevelByIdQuery.Query(id);
+            //var result = await _mediator.Send(query);
+
+            // Processor
+            var result = await _processorFactory.OrgLevel.GetById.Process(id);
+
             var output = _mapper.Map<OrgLevelResponseModel>(result);
             return output is null ? NotFound() : Ok(output);
         }

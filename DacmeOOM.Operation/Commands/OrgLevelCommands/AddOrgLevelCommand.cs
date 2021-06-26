@@ -1,4 +1,4 @@
-﻿using DacmeOOM.Core.Application.Interfaces;
+﻿using DacmeOOM.Core.Application.Interfaces.IFactories;
 using DacmeOOM.Core.Application.Models;
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Core.Domain.Models;

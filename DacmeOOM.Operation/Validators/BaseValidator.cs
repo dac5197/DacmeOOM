@@ -1,4 +1,4 @@
-﻿using DacmeOOM.Core.Application.Interfaces;
+﻿using DacmeOOM.Core.Application.Interfaces.IValidators;
 using DacmeOOM.Core.Application.Models;
 using System;
 using System.Collections.Generic;

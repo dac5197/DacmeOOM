@@ -1,6 +1,6 @@
 using DacmeOOM.Core.Application;
 using DacmeOOM.Core.Application.Factories;
-using DacmeOOM.Core.Application.Interfaces;
+using DacmeOOM.Core.Application.Interfaces.IFactories;
 using DacmeOOM.Core.Domain.Interfaces;
 using DacmeOOM.Infrastructure.EFCore.DataAccess;
 using DacmeOOM.Infrastructure.EFCore.Factories;
@@ -70,6 +70,7 @@ namespace DacmeOOM.Api
                 options.ReportApiVersions = true;
             });
 
+            services.AddScoped<IProcessorFactory, ProcessorFactory>();
             services.AddScoped<IServiceFactory, Infrastructure.EFCore.Factories.ServiceFactory>();
             services.AddScoped<IValidatorFactory, ValidatorFactory>();
         }

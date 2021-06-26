@@ -2,7 +2,7 @@
 using DacmeOOM.Core.Domain.Models;
 using System.Threading.Tasks;
 
-namespace DacmeOOM.Core.Application.Interfaces
+namespace DacmeOOM.Core.Application.Interfaces.IValidators
 {
     public interface IOrgTypeValidator
     {

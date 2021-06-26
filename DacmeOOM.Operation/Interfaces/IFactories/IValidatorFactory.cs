@@ -1,4 +1,6 @@
-﻿namespace DacmeOOM.Core.Application.Interfaces
+﻿using DacmeOOM.Core.Application.Interfaces.IValidators;
+
+namespace DacmeOOM.Core.Application.Interfaces.IFactories
 {
     public interface IValidatorFactory
     {

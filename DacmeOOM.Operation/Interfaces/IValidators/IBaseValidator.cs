@@ -1,6 +1,6 @@
 ﻿using DacmeOOM.Core.Application.Models;
 
-namespace DacmeOOM.Core.Application.Interfaces
+namespace DacmeOOM.Core.Application.Interfaces.IValidators
 {
     public interface IBaseValidator
     {
