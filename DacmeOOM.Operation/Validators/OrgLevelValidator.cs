@@ -32,7 +32,7 @@ namespace DacmeOOM.Core.Application.Validators
             Validate_Name_IsLessThan51Char(entity);
             Validate_Level_IsPostive(entity);
 
-            await Validate_FkOrgTypeEntity_ExistsInDb(entity);
+            //await Validate_FkOrgTypeEntity_ExistsInDb(entity);
 
             return await Task.FromResult(ErrorsList);
         }

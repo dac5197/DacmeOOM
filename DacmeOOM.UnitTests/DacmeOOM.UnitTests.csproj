@@ -26,4 +26,8 @@
     <ProjectReference Include="..\DacmeOOM.Operation\DacmeOOM.Core.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core.Application\Factories\" />
+  </ItemGroup>
+
 </Project>

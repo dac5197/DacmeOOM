@@ -57,7 +57,7 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
             OrgLevelModel entity = new()
             {
                 Id = _rand.Next(1, 9999),
-                Name = $"Name{_rand.Next(1, 100)}",
+                Name = $"Name{ _rand.Next(1, 100) }",
                 Level = _rand.Next(0, 99),
                 OrgTypeId = _rand.Next(1, 99)
             };
