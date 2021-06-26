@@ -29,15 +29,15 @@ namespace DacmeOOM.Core.Application.Validators
             }
 
             Validate_Name_IsNotEmpty(entity);
-            Validate_Name_IsLessThan51Char(entity);
+            Validate_Name_IsLessThan50Char(entity);
             Validate_Level_IsPostive(entity);
 
-            //await Validate_FkOrgTypeEntity_ExistsInDb(entity);
+            await Validate_FkOrgTypeEntity_ExistsInDb(entity);
 
             return await Task.FromResult(ErrorsList);
         }
 
-        private void Validate_Name_IsNotEmpty(OrgLevelModel entity)
+        public void Validate_Name_IsNotEmpty(OrgLevelModel entity)
         {
             var propertyName = nameof(entity.Name);
             var propertyToTest = entity.Name;
@@ -48,7 +48,7 @@ namespace DacmeOOM.Core.Application.Validators
             }
         }
 
-        private void Validate_Name_IsLessThan51Char(OrgLevelModel entity)
+        public void Validate_Name_IsLessThan50Char(OrgLevelModel entity)
         {
             var propertyName = nameof(entity.Name);
             var propertyToTest = entity.Name;
@@ -59,7 +59,7 @@ namespace DacmeOOM.Core.Application.Validators
             }
         }
 
-        private void Validate_Level_IsPostive(OrgLevelModel entity)
+        public void Validate_Level_IsPostive(OrgLevelModel entity)
         {
             var propertyName = nameof(entity.Level);
             var propertyToTest = entity.Level;
@@ -70,7 +70,7 @@ namespace DacmeOOM.Core.Application.Validators
             }
         }
 
-        private async Task Validate_FkOrgTypeEntity_ExistsInDb(OrgLevelModel entity)
+        public async Task Validate_FkOrgTypeEntity_ExistsInDb(OrgLevelModel entity)
         {
             var propertyName = nameof(entity.OrgTypeId);
             var entityInDb = await _serviceFactory.OrgType.GetAsync(entity.OrgTypeId);
@@ -81,7 +81,7 @@ namespace DacmeOOM.Core.Application.Validators
             }
         }
 
-        private async Task Validate_OrgLevelEntity_ExistsInDb(OrgLevelModel entity)
+        public async Task Validate_OrgLevelEntity_ExistsInDb(OrgLevelModel entity)
         {
             var propertyName = nameof(entity.Id);
             var entitiesInDb = await _serviceFactory.OrgLevel.GetUntrackedAsync();
