@@ -31,7 +31,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
             var result = await sut.ProcessAsync();
 
             // Assert
-            result.Should().BeEquivalentTo(expectEntities, options => options.ExcludingMissingMembers())
+            result
+                .Should().BeEquivalentTo(expectEntities, options => options.ExcludingMissingMembers())
                 .And.HaveCount(entityCount);
         }
 

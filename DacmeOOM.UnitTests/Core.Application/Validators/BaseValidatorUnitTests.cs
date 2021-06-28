@@ -28,7 +28,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList.Errors;
 
             // Assert
-            result.Should().BeEmpty();
+            result
+                .Should().BeEmpty();
         }
 
         [Fact]
@@ -44,7 +45,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList.Errors;
 
             // Assert
-            result.Should().BeEmpty();
+            result
+                .Should().BeEmpty();
         }
 
         [Fact]
@@ -60,7 +62,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList.Errors;
 
             // Assert
-            result.Should().BeEmpty();
+            result
+                .Should().BeEmpty();
         }
 
         [Fact]
@@ -76,7 +79,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList.Errors;
 
             // Assert
-            result.Should().BeEmpty();
+            result
+                .Should().BeEmpty();
         }
 
         [Fact]
@@ -94,7 +98,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList.Errors;
 
             // Assert
-            result.Should().ContainEquivalentOf(error);
+            result
+                .Should().ContainEquivalentOf(error);
         }
 
         [Fact]
@@ -109,8 +114,11 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList;
 
             // Assert
-            result.EntityName.Should().Be(randEntityName);
-            result.Errors.Should().BeOfType<List<ErrorModel>>()
+            result.EntityName
+                .Should().Be(randEntityName);
+
+            result.Errors
+                .Should().BeOfType<List<ErrorModel>>()
                 .And.Should().NotBeNull();
         }
 

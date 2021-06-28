@@ -27,7 +27,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
             var result = sut.OrgLevel;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<OrgLevelValidator>();
         }
 
@@ -43,7 +44,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
             var result = sut.OrgType;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<OrgTypeValidator>();
         }
     }

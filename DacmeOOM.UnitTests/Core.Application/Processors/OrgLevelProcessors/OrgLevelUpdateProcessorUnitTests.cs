@@ -38,9 +38,11 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
             var result = await sut.ProcessAsync(entity);
 
             // Assert
-            result.IsValid.Should().BeTrue();
+            result.IsValid
+                .Should().BeTrue();
 
-            result.Entity.Should().BeOfType<OrgLevelModel>()
+            result.Entity
+                .Should().BeOfType<OrgLevelModel>()
                 .And.BeEquivalentTo(entity);
         }
 
@@ -72,11 +74,14 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
             var result = await sut.ProcessAsync(entity);
 
             // Assert
-            result.IsValid.Should().BeFalse();
+            result.IsValid
+                .Should().BeFalse();
 
-            result.ErrorList.Should().NotBeNull();
+            result.ErrorList
+                .Should().NotBeNull();
 
-            result.ErrorList.Errors.Should().Contain(error);
+            result.ErrorList.Errors
+                .Should().Contain(error);
 
             result.Entity.Should().BeOfType<OrgLevelModel>()
                 .And.BeEquivalentTo(entity);

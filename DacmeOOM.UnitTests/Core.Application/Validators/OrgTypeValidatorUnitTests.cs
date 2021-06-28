@@ -40,12 +40,15 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = await sut.ValidateAsync(entity);
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<ErrorListModel>();
 
-            result.EntityName.Should().Be(GetEntityName(entity));
+            result.EntityName
+                .Should().Be(GetEntityName(entity));
 
-            result.Errors.Should().ContainEquivalentOf(expextedError);
+            result.Errors
+                .Should().ContainEquivalentOf(expextedError);
         }
 
         [Fact]
@@ -70,12 +73,15 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = await sut.ValidateAsync(entity);
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<ErrorListModel>();
 
-            result.EntityName.Should().Be(GetEntityName(entity));
+            result.EntityName
+                .Should().Be(GetEntityName(entity));
 
-            result.Errors.Should().BeEmpty();
+            result.Errors
+                .Should().BeEmpty();
         }
 
 
@@ -100,12 +106,15 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<ErrorListModel>();
 
-            result.EntityName.Should().Be(GetEntityName(entity));
+            result.EntityName
+                .Should().Be(GetEntityName(entity));
 
-            result.Errors.Should().ContainEquivalentOf(expextedError);
+            result.Errors
+                .Should().ContainEquivalentOf(expextedError);
         }
 
         [Fact]
@@ -124,12 +133,15 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<ErrorListModel>();
 
-            result.EntityName.Should().Be(GetEntityName(entity));
+            result.EntityName
+                .Should().Be(GetEntityName(entity));
 
-            result.Errors.Should().BeEmpty();
+            result.Errors
+                .Should().BeEmpty();
         }
 
         [Fact]
@@ -154,12 +166,15 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<ErrorListModel>();
 
-            result.EntityName.Should().Be(GetEntityName(entity));
+            result.EntityName
+                .Should().Be(GetEntityName(entity));
 
-            result.Errors.Should().ContainEquivalentOf(expextedError);
+            result.Errors
+                .Should().ContainEquivalentOf(expextedError);
         }
 
         [Fact]
@@ -179,12 +194,15 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<ErrorListModel>();
 
-            result.EntityName.Should().Be(GetEntityName(entity));
+            result.EntityName
+                .Should().Be(GetEntityName(entity));
 
-            result.Errors.Should().BeEmpty();
+            result.Errors
+                .Should().BeEmpty();
         }
 
         [Fact]
@@ -220,12 +238,15 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<ErrorListModel>();
 
-            result.EntityName.Should().Be(GetEntityName(entityToTest));
+            result.EntityName
+                .Should().Be(GetEntityName(entityToTest));
 
-            result.Errors.Should().ContainEquivalentOf(expextedError);
+            result.Errors
+                .Should().ContainEquivalentOf(expextedError);
         }
 
         [Fact]
@@ -258,12 +279,15 @@ namespace DacmeOOM.UnitTests.Core.Application.Validators
             var result = sut.ErrorsList;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<ErrorListModel>();
 
-            result.EntityName.Should().Be(GetEntityName(entityToTest));
+            result.EntityName
+                .Should().Be(GetEntityName(entityToTest));
 
-            result.Errors.Should().BeEmpty();
+            result.Errors
+                .Should().BeEmpty();
         }
 
         private static ErrorModel CreateErrorModel(string propertyName, string propertyToTest)

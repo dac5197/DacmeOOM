@@ -28,7 +28,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
             var result = await sut.ProcessAsync(5);
 
             // Assert
-            result.Should().BeTrue();
+            result
+                .Should().BeTrue();
         }
 
         [Fact]
@@ -45,7 +46,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
             var result = await sut.ProcessAsync(5);
 
             // Assert
-            result.Should().BeFalse();
+            result
+                .Should().BeFalse();
         }
     }
 }

@@ -28,7 +28,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
             var result = sut.GetAll;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<OrgLevelGetAllProcessor>();
         }
 
@@ -45,7 +46,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
             var result = sut.GetById;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<OrgLevelGetByIdProcessor>();
         }
 
@@ -62,7 +64,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
             var result = sut.Add;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<OrgLevelAddProcessor>();
         }
 
@@ -79,7 +82,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
             var result = sut.Update;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<OrgLevelUpdateProcessor>();
         }
 
@@ -96,7 +100,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
             var result = sut.Delete;
 
             // Assert
-            result.Should().NotBeNull()
+            result
+                .Should().NotBeNull()
                 .And.BeOfType<OrgLevelDeleteProcessor>();
         }
     }

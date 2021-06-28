@@ -31,7 +31,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
             var result = await sut.ProcessAsync(_rand.Next(1, 100));
 
             // Assert
-            result.Should().BeOfType<OrgLevelModel>()
+            result
+                .Should().BeOfType<OrgLevelModel>()
                 .And.Should().NotBeNull()
                 .And.Should().BeEquivalentTo(expectedEntity, options => options.ExcludingMissingMembers());
         }
@@ -49,7 +50,8 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
             var result = await sut.ProcessAsync(_rand.Next(1, 100));
 
             // Assert
-            result.Should().BeNull();
+            result
+                .Should().BeNull();
 
         }
 
