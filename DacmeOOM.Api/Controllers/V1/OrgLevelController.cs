@@ -69,8 +69,10 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] OrgLevelPostRequestModel value)
         {
-            var command = new AddOrgLevelCommand.Command(value.Name, value.Level, value.OrgTypeId);
-            var result = await _mediator.Send(command);
+            //var command = new AddOrgLevelCommand.Command(value.Name, value.Level, value.OrgTypeId);
+            //var result = await _mediator.Send(command);
+
+            var result = await _processorFactory.OrgLevel.Add.ProcessAsync(_mapper.Map<OrgLevelModel>(value));
 
             if (result.IsValid is false)
             {

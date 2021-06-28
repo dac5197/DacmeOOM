@@ -1,4 +1,5 @@
 ﻿using DacmeOOM.Core.Application.Factories;
+using DacmeOOM.Core.Application.Interfaces.IFactories;
 using DacmeOOM.Core.Application.Processors.OrgLevelProcessors;
 using DacmeOOM.Core.Domain.Interfaces;
 using FluentAssertions;
@@ -19,8 +20,9 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
         {
             // Arrange
             var serviceFactoryStub = new Mock<IServiceFactory>();
+            var validatorFactoryStub = new Mock<IValidatorFactory>();
 
-            var sut = new OrgLevelProcessorFactory(serviceFactoryStub.Object);
+            var sut = new OrgLevelProcessorFactory(serviceFactoryStub.Object, validatorFactoryStub.Object);
 
             // Act
             var result = sut.GetAll;
@@ -35,8 +37,9 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
         {
             // Arrange
             var serviceFactoryStub = new Mock<IServiceFactory>();
+            var validatorFactoryStub = new Mock<IValidatorFactory>();
 
-            var sut = new OrgLevelProcessorFactory(serviceFactoryStub.Object);
+            var sut = new OrgLevelProcessorFactory(serviceFactoryStub.Object, validatorFactoryStub.Object);
 
             // Act
             var result = sut.GetById;

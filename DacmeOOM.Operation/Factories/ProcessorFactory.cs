@@ -11,12 +11,13 @@ namespace DacmeOOM.Core.Application.Factories
     public class ProcessorFactory : IProcessorFactory
     {
         private readonly IServiceFactory _serviceFactory;
-
+        private readonly IValidatorFactory _validatorFactory;
         private IOrgLevelProcessorFactory _orgLevel;
 
-        public ProcessorFactory(IServiceFactory serviceFactory)
+        public ProcessorFactory(IServiceFactory serviceFactory, IValidatorFactory validatorFactory)
         {
             _serviceFactory = serviceFactory;
+            _validatorFactory = validatorFactory;
         }
 
         public IOrgLevelProcessorFactory OrgLevel
@@ -25,7 +26,7 @@ namespace DacmeOOM.Core.Application.Factories
             {
                 if (_orgLevel is null)
                 {
-                    _orgLevel = new OrgLevelProcessorFactory(_serviceFactory);
+                    _orgLevel = new OrgLevelProcessorFactory(_serviceFactory, _validatorFactory);
                 }
 
                 return _orgLevel;

@@ -1,4 +1,5 @@
 ﻿using DacmeOOM.Core.Application.Factories;
+using DacmeOOM.Core.Application.Interfaces.IFactories;
 using DacmeOOM.Core.Domain.Interfaces;
 using FluentAssertions;
 using Moq;
@@ -18,8 +19,9 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
         {
             // Arrange
             var serviceFactoryStub = new Mock<IServiceFactory>();
+            var validatorFactoryStub = new Mock<IValidatorFactory>();
 
-            var sut = new ProcessorFactory(serviceFactoryStub.Object);
+            var sut = new ProcessorFactory(serviceFactoryStub.Object, validatorFactoryStub.Object);
 
             // Act
             var result = sut.OrgLevel;
