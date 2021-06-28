@@ -33,7 +33,7 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
         }
 
         [Fact]
-        public void PropGetById_WhenNew_ReturnsNewOrgLevelGetAllProcessor()
+        public void PropGetById_WhenNew_ReturnsNewOrgLevelGetByIdProcessor()
         {
             // Arrange
             var serviceFactoryStub = new Mock<IServiceFactory>();
@@ -47,6 +47,57 @@ namespace DacmeOOM.UnitTests.Core.Application.Factories
             // Assert
             result.Should().NotBeNull()
                 .And.BeOfType<OrgLevelGetByIdProcessor>();
+        }
+
+        [Fact]
+        public void PropAdd_WhenNew_ReturnsNewOrgLevelAddProcessor()
+        {
+            // Arrange
+            var serviceFactoryStub = new Mock<IServiceFactory>();
+            var validatorFactoryStub = new Mock<IValidatorFactory>();
+
+            var sut = new OrgLevelProcessorFactory(serviceFactoryStub.Object, validatorFactoryStub.Object);
+
+            // Act
+            var result = sut.Add;
+
+            // Assert
+            result.Should().NotBeNull()
+                .And.BeOfType<OrgLevelAddProcessor>();
+        }
+
+        [Fact]
+        public void PropUpdate_WhenNew_ReturnsNewOrgLevelUpdateProcessor()
+        {
+            // Arrange
+            var serviceFactoryStub = new Mock<IServiceFactory>();
+            var validatorFactoryStub = new Mock<IValidatorFactory>();
+
+            var sut = new OrgLevelProcessorFactory(serviceFactoryStub.Object, validatorFactoryStub.Object);
+
+            // Act
+            var result = sut.Update;
+
+            // Assert
+            result.Should().NotBeNull()
+                .And.BeOfType<OrgLevelUpdateProcessor>();
+        }
+
+        [Fact]
+        public void PropDelete_WhenNew_ReturnsNewOrgLevelDeleteProcessor()
+        {
+            // Arrange
+            var serviceFactoryStub = new Mock<IServiceFactory>();
+            var validatorFactoryStub = new Mock<IValidatorFactory>();
+
+            var sut = new OrgLevelProcessorFactory(serviceFactoryStub.Object, validatorFactoryStub.Object);
+
+            // Act
+            var result = sut.Delete;
+
+            // Assert
+            result.Should().NotBeNull()
+                .And.BeOfType<OrgLevelDeleteProcessor>();
         }
     }
 }

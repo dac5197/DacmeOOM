@@ -25,14 +25,14 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         private readonly IProcessorFactory _processorFactory;
         private readonly IServiceFactory _serviceFactory;
         private readonly IMapper _mapper;
-        private readonly IMediator _mediator;
+        //private readonly IMediator _mediator;
 
-        public OrgLevelController(IProcessorFactory processorFactory, IServiceFactory serviceFactory, IMapper mapper, IMediator mediator)
+        public OrgLevelController(IProcessorFactory processorFactory, IServiceFactory serviceFactory, IMapper mapper)
         {
             _processorFactory = processorFactory;
             _serviceFactory = serviceFactory;
             _mapper = mapper;
-            _mediator = mediator;
+            //_mediator = mediator;
         }
 
         // GET: api/<OrgLevelController>
