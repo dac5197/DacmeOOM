@@ -14,12 +14,12 @@ using Xunit;
 
 namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
 {
-    public class OrgLevelAddProcessorUnitTests
+    public class OrgLevelUpdateProcessorUnitTests
     {
         private readonly Random _rand = new();
 
         [Fact]
-        public async Task Add_WhenEntityIsValid_ReturnsResponseIsValidIsTrue()
+        public async Task Update_WhenEntityIsValid_ReturnsResponseIsValidIsTrue()
         {
             // Arrange
             var entity = CreateRandomOrgLevelModel();
@@ -32,7 +32,7 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
             var validatorFactoryStub = new Mock<IValidatorFactory>();
             validatorFactoryStub.Setup(x => x.OrgLevel.ValidateAsync(It.IsAny<OrgLevelModel>())).ReturnsAsync(entityErrors);
 
-            var sut = new OrgLevelAddProcessor(serviceFactoryStub.Object, validatorFactoryStub.Object);
+            var sut = new OrgLevelUpdateProcessor(serviceFactoryStub.Object, validatorFactoryStub.Object);
 
             // Act
             var result = await sut.ProcessAsync(entity);
@@ -45,7 +45,7 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
         }
 
         [Fact]
-        public async Task Add_WhenEntityIsInvalid_ReturnsResponseIsValidIsFalseAndContainsErrors()
+        public async Task Update_WhenEntityIsInvalid_ReturnsResponseIsValidIsFalseAndContainsErrors()
         {
             // Arrange
             var entity = CreateRandomOrgLevelModel();
@@ -66,7 +66,7 @@ namespace DacmeOOM.UnitTests.Core.Application.Processors.OrgLevelProcessors
             var validatorFactoryStub = new Mock<IValidatorFactory>();
             validatorFactoryStub.Setup(x => x.OrgLevel.ValidateAsync(It.IsAny<OrgLevelModel>())).ReturnsAsync(entityErrors);
 
-            var sut = new OrgLevelAddProcessor(serviceFactoryStub.Object, validatorFactoryStub.Object);
+            var sut = new OrgLevelUpdateProcessor(serviceFactoryStub.Object, validatorFactoryStub.Object);
 
             // Act
             var result = await sut.ProcessAsync(entity);
