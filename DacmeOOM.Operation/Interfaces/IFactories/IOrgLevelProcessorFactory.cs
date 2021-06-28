@@ -8,5 +8,6 @@ namespace DacmeOOM.Core.Application.Interfaces.IFactories
         IOrgLevelGetByIdProcessor GetById { get; }
         IOrgLevelAddProcessor Add { get; }
         IOrgLevelUpdateProcessor Update { get; }
+        IOrgLevelDeleteProcessor Delete { get; }
     }
 }

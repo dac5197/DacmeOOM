@@ -91,8 +91,10 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, OrgLevelPutRequestModel value)
         {
-            var command = new UpdateOrgLevelCommand.Command(id, _mapper.Map<OrgLevelModel>(value));
-            var result = await _mediator.Send(command);
+            //var command = new UpdateOrgLevelCommand.Command(id, _mapper.Map<OrgLevelModel>(value));
+            //var result = await _mediator.Send(command);
+
+            var result = await _processorFactory.OrgLevel.Update.ProcessAsync(_mapper.Map<OrgLevelModel>(value));
 
             if (result.IsValid is false)
             {
@@ -111,9 +113,9 @@ namespace DacmeOOM.Web.Api.Controllers.V1
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var command = new DeleteOrgLevelCommand.Command(id);
-            var result = await _mediator.Send(command);
-
+            //var command = new DeleteOrgLevelCommand.Command(id);
+            //var result = await _mediator.Send(command);
+            var result = await _processorFactory.OrgLevel.Delete.ProcessAsync(id);
             return result ? Ok() : NotFound();
         }
     }

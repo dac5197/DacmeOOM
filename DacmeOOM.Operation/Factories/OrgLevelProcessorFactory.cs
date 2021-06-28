@@ -18,6 +18,7 @@ namespace DacmeOOM.Core.Application.Factories
         private IOrgLevelGetByIdProcessor _getById;
         private IOrgLevelAddProcessor _add;
         private IOrgLevelUpdateProcessor _update;
+        private IOrgLevelDeleteProcessor _delete;
 
         public OrgLevelProcessorFactory(IServiceFactory serviceFactory, IValidatorFactory validatorFactory)
         {
@@ -77,5 +78,17 @@ namespace DacmeOOM.Core.Application.Factories
             }
         }
 
+        public IOrgLevelDeleteProcessor Delete
+        {
+            get
+            {
+                if (_delete is null)
+                {
+                    _delete = new OrgLevelDeleteProcessor(_serviceFactory);
+                }
+
+                return _delete;
+            }
+        }
     }
 }
